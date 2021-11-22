@@ -207,7 +207,7 @@ class Classifier():
             print('f1_score: {:.3f}'.format(f1_score))
         return accuracy, conf_mat, precision, recall, f1_score
 
-    def interpret(self, data_loader, n_features, n_classes, save_path=None):
+    def interpret(self, data_loader, n_fesatures, n_classes, save_path=None):
         batch = next(iter(data_loader))
         e = batch.edge_index.to(self.device).long()
         def model_forward(input):
@@ -221,5 +221,8 @@ class Classifier():
             ig = IntegratedGradients(model_forward)
             attributions = ig.attribute(input, target=target)
             attributions = attributions.to('cpu').detach().numpy()
+            attributions = attributions.reshape(n_features, len(target))
             importances[:, target.to('cpu').numpy()] += attributions
-        return importances
+        imp = (np.e**importances.T / np.sum(np.e**importances, axis = 1)).T
+        ent = (-imp * np.log2(imp)).sum(axis = 1) / np.log2(n_classes)
+        return importances, ent
