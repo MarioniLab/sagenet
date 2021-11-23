@@ -18,63 +18,9 @@ import scanpy as sc
 import pandas as pd
 import igraph as ig
 import numpy as np
+from scipy import sparse
 
-
-
-def load_anndata(input_dir, tag='train', class_col='class_', ext='.h5ad', **kwargs):
-    full_path = os.path.join(input_dir, tag) + ext
-    print(full_path)
-    dt = sc.read(full_path)
-    # comm = dt.var.community
-    # ind = (comm!=max(comm)).values.tolist()
-    # dt.uns['adj'] = dt.uns['adj'][ind, :] 
-    # dt.uns['adj'] = dt.uns['adj'][:, ind] 
-    # ind = comm[ind].index.tolist()
-    # dt = dt[:, ind]
-    dt = dt[dt.obs[class_col].sort_values().index, :]
-    dt.obs.class_ = dt.obs[class_col]
-    return dt.X, (dt.obs.class_.values.astype('long')-1), dt.uns['adj'].toarray(), (dt.obs.class_.unique().astype('long')-1), dt.var.ID.values
-
-
-def load_adj(path):
-    """
-        loads the adjacency matrix.
-
-        Parameters
-        ----------
-        path: str
-           Path to the directory including `adj.txt` file.
-
-        Returns
-        -------
-        adj : The adjacency matrix
-        num_nodes : Number of nodes
-    """
-    full_path = os.path.join(path, 'adj.txt')
-    num_nodes = -1
-    adj = []
-    with open(full_path, mode='r') as txt_file:
-        for row in txt_file:
-            row = row.split(",")
-            num_nodes += 1
-            if num_nodes == 0:
-                continue
-            adj.append([float(row[i]) for i in range(0, len(row))])
-
-    adj = np.asarray(adj)
-    return adj, num_nodes
-
-def load_names(path):
-    full_path = os.path.join(path, 'feature_names.txt')
-    if not os.path.isfile(full_path):
-        return None
-    features = []
-    with open(full_path, mode='r') as txt_file:
-        for row in txt_file:
-            features.append(row.strip('\n'))
-    return features
-
-def glasso(data, alphas=5, n_jobs=None, mode='cd'):
+def glasso(adata, alphas=5, n_jobs=None, mode='cd'):
     """
         Estimates the graph with graphical lasso finding the best alpha based on cross validation
 
@@ -89,156 +35,12 @@ def glasso(data, alphas=5, n_jobs=None, mode='cd'):
         adjacency matrix : the estimated adjacency matrix.
     """
     scaler = StandardScaler()
-    data = scaler.fit_transform(data)
+    data = scaler.fit_transform(adata.X)
     cov = GraphicalLassoCV(alphas=alphas, n_jobs=n_jobs).fit(data)
     precision_matrix = cov.get_precision()
     adjacency_matrix = precision_matrix.astype(bool).astype(int)
     adjacency_matrix[np.diag_indices_from(adjacency_matrix)] = 0
-    return adjacency_matrix
-
-def glasso_R(data, alphas, mode='cd'):
-    """
-        Estimates the graph with graphical lasso based on its implementation in R.
-
-        Parameters
-        ----------
-        data: numpy ndarray
-            The input data for to reconstruct/estimate a graph on. Features as columns and observations as rows.
-        alphas: float
-            Non-negative regularization parameter of the graphical lasso algorithm.
-        Returns
-        -------
-        adjacency matrix : the estimated adjacency matrix.
-    """
-    scaler = StandardScaler()
-    data = scaler.fit_transform(data)
-    _ , n_samples = data.shape
-    cov_emp = np.dot(data.T, data) / n_samples
-    covariance, precision_matrix = graphical_lasso(emp_cov=cov_emp, alpha=alphas, mode=mode)
-    adjacency_matrix = precision_matrix.astype(bool).astype(int)
-    adjacency_matrix[np.diag_indices_from(adjacency_matrix)] = 0
-    return adjacency_matrix
-
-def lw(data, alphas):
-    """
-        Estimates the graph with Ledoit-Wolf estimator.
-
-        Parameters
-        ----------
-        data: numpy ndarray
-            The input data for to reconstruct/estimate a graph on. Features as columns and observations as rows.
-        alphas: float
-            The threshold on the precision matrix to determine edges.
-        Returns
-        -------
-        adjacency matrix : the estimated adjacency matrix.
-    """
-    alpha=alphas
-    scaler = StandardScaler()
-    data = scaler.fit_transform(data)
-    cov = LedoitWolf().fit(data)
-    precision_matrix = cov.get_precision()
-    n_features, _ = precision_matrix.shape
-    mask1 = np.abs(precision_matrix) > alpha
-    mask0 = np.abs(precision_matrix) <= alpha
-    adjacency_matrix = np.zeros((n_features,n_features))
-    adjacency_matrix[mask1] = 1
-    adjacency_matrix[mask0] = 0
-    adjacency_matrix[np.diag_indices_from(adjacency_matrix)] = 0
-    return adjacency_matrix
-
-
-
-def ebic(covariance, precision, n_samples, n_features, gamma=0):
-    """
-    Extended Bayesian Information Criteria for model selection.
-    When using path mode, use this as an alternative to cross-validation for
-    finding lambda.
-    See:
-        "Extended Bayesian Information Criteria for Gaussian Graphical Models"
-        R. Foygel and M. Drton, NIPS 2010
-    Parameters
-    ----------
-    covariance : 2D ndarray (n_features, n_features)
-        Maximum Likelihood Estimator of covariance (sample covariance)
-    precision : 2D ndarray (n_features, n_features)
-        The precision matrix of the model to be tested
-    n_samples :  int
-        Number of examples.
-    n_features : int
-        Dimension of an example.
-    gamma : (float) in (0, 1)
-        Choice of gamma=0 leads to classical BIC
-        Positive gamma leads to stronger penalization of large graphs.
-    Returns
-    -------
-    ebic score (float).  Caller should minimized this score.
-    """
-    l_theta = -np.sum(covariance * precision) + fast_logdet(precision)
-    l_theta *= n_features / 2.
-
-    # is something goes wrong with fast_logdet, return large value
-    if np.isinf(l_theta) or np.isnan(l_theta):
-        return 1e10
-
-    mask = np.abs(precision.flat) > np.finfo(precision.dtype).eps
-    precision_nnz = (np.sum(mask) - n_features) / 2.0  # lower off diagonal tri
-
-    return -2.0 * l_theta \
-        + precision_nnz * np.log(n_samples) \
-        + 4.0 * precision_nnz * np.log(n_features) * gamma
-    
-
-
-def compare_graphs(A, Ah):
-    """
-        Compares a (adjacency) matrix with a reference (adjacency) matrix.
-
-        Parameters
-        ----------
-        A: numpy ndarray
-            The reference (adjacency) matrix.
-        Ah: numpy ndarray
-            The (adjacency) matrix to compare with the reference matrix.
-        Returns
-        -------
-        TPR : true positive rate.
-        TNR : true negative rate.
-        FPR : false positive rate.
-        FNR : false negative rate.
-        accuracy : accuracy.
-    """
-    TP = np.sum(A[A==1] == Ah[A==1]) # true positive rate
-    TN = np.sum(A[A==0] == Ah[A==0]) # true negative rate
-    FP = np.sum(A[A==0] != Ah[A==0]) # false positive rate
-    FN = np.sum(A[A==1] != Ah[A==1]) # false negative rate
-    precision = TP / (TP + FP)
-    recall    = TP / (TP + FN)
-    f1_score  = 2 * precision * recall / (precision + recall)
-    accuracy = (TP+TN)/(TP+FP+TN+FN)
-    TPR = TP/(TP+FN)
-    TNR = TN/(TN+FP)
-    FPR = FP/(FP+TN)
-    FNR = FN/(FN+TP)
-    BA = (TPR+TNR)/2
-    return round(TPR,4), round(TNR,4), round(FPR,4), round(FNR,4), round(accuracy,4), round(BA,4) 
-
-def compare_graphs_eigv(A, Ah):
-    """
-        Compares a (adjacency) matrix with a reference (adjacency) matrix based on the spectral norm.
-
-        Parameters
-        ----------
-        A: numpy ndarray
-            The reference (adjacency) matrix.
-        Ah: numpy ndarray
-            The (adjacency) matrix to compare with the reference matrix.
-        Returns
-        -------
-        The norm-2 distance of the two matrices.
-    """
-    return round(np.sqrt(np.sum((np.linalg.eigvals(A)-np.linalg.eigvals(Ah))**2)),2)
-
+    save_adata(adata, attr='varm', key='adj', data=sparse.csr_matrix(adjacency_matrix))
 
 
 def compute_metrics(y_true, y_pred):
@@ -394,3 +196,6 @@ def multinomial_rvs(n, p):
     out[..., 0] = count
     return out
 
+def save_adata(adata, attr, key, data):
+    obj = getattr(adata, attr)
+    obj[key] = data
