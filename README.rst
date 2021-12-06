@@ -5,7 +5,7 @@ SageNet: spatial reconstruction of dissociated single-cell data using graph neur
 **SageNet** is a robust and generalizable graph neural network approach that probabilistically maps dissociated single cells to their hypothetical tissue of origin using one or more references datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
 
 
-
+.. raw:: html
 
     <p align="center">
         <a href="">
