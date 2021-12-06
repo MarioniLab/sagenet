@@ -10,7 +10,7 @@ SageNet: spatial reconstruction of dissociated single-cell data using graph neur
     <p align="center">
         <a href="">
             <img src="https://github.com/MarioniLab/sagenet/files/7663030/final.pdf"
-             width="400px" alt="sagenet logo">
+             width="700px" alt="sagenet logo">
         </a>
     </p>
 
@@ -41,7 +41,12 @@ The workflow
 		* The reconstructed cell-cell spatial distance matrix
 
 		* A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
-
+    <p align="center">
+        <a href="">
+            <img src="https://user-images.githubusercontent.com/55977725/144909791-7b451f94-bcf4-4f2d-9f7e-6c1a692e6ffd.gif"
+             width="400px" alt="activations logo">
+        </a>
+    </p>
 
 Usage and installation
 -------------------------------
