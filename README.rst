@@ -32,7 +32,6 @@ The workflow
 
 		* A concensus scoring of spatially informativity of each gene
 
-
 #. Mapping phase:
 	* Input: 
 		* Expression matrix associated with the (dissociated) query dataset (an `anndata` object)
@@ -41,6 +40,9 @@ The workflow
 		* The reconstructed cell-cell spatial distance matrix
 
 		* A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
+		
+.. raw:: html
+
     <p align="center">
         <a href="">
             <img src="https://user-images.githubusercontent.com/55977725/144909791-7b451f94-bcf4-4f2d-9f7e-6c1a692e6ffd.gif"
