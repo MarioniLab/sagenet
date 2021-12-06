@@ -1,6 +1,7 @@
 from utils import *
 from classifier import *
 from model import *
+from os import listdir
 
 class sage():
     def __init__(self, random_seed=1996, device='cpu'):
@@ -104,5 +105,21 @@ class sage():
     def load_model(self, tag, dir='.'):
       path = os.path.join(dir, tag) + '.pickle'
       self.models[tag] = torch.load(path)
+
+    def save_model_as_folder(self, dir='.'):
+      for tag in self.models.keys():
+        self.save_model(tag, dir)
+        adj_path = os.path.join(dir, tag) + '.h5ad'
+        adj_adata = anndata.AnnData(X = self.adjs[tag])
+        adj_adata.write(filename=adj_path)
+
+    def load_model_as_folder(self, dir='.'):
+      model_files = [f for f in listdir(dir) if re.search(r".pickle$", f)]
+      for m in model_files:
+        tag = re.sub(r'.pickle', '', m)
+        model_path = os.path.join(dir, tag) + '.pickle'
+        adj_path = os.path.join(dir, tag) + '.h5ad'
+        self.models[tag] = torch.load(model_path)
+        self.adjs[tag] = sc.read_h5ad(adj_path).X
 
 

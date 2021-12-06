@@ -1,0 +1,11 @@
+anndata>=0.7.4
+torch>=1.8.0
+python-igraph>=0.8.3
+networkx>=2.5
+python-louvain>=0.14
+umap-learn>=0.4.6
+argparse>=1.1
+numpy>=1.19.2
+scikit-learn>=0.23.2
+scipy>=1.5.2
+argparse>=1.1

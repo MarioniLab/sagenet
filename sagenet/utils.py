@@ -1,12 +1,10 @@
 import os
 import csv
 import numpy as np
-import pandas as pd
 # from graspologic.simulations import sbm
 from sklearn.metrics import *
 from sklearn.covariance import GraphicalLassoCV, graphical_lasso, LedoitWolf
 from sklearn.preprocessing import StandardScaler
-import matplotlib.pyplot as plt
 import igraph as ig 
 import networkx as nx
 from community import community_louvain
@@ -15,7 +13,6 @@ import torch
 import torch_geometric.data as geo_dt
 from sklearn.utils.extmath import fast_logdet
 import scanpy as sc
-import pandas as pd
 import igraph as ig
 import numpy as np
 from scipy import sparse
@@ -123,11 +120,6 @@ def get_dataloader(graph, X, y, batch_size=1,undirected=True, shuffle=True, num_
 
     dataloader = geo_dt.DataLoader(list_graphs, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers, pin_memory=False)
     return dataloader
-
-
-def save_np_txt(ndarray, path, colnames=None, rownames=None):
-    df = pd.DataFrame(data=ndarray, index=rownames, columns=colnames)
-    df.to_csv(path, sep='\t', index=True, header=True)
 
 
 
