@@ -5,6 +5,15 @@ SageNet: spatial reconstruction of dissociated single-cell data using graph neur
 **SageNet** is a robust and generalizable graph neural network approach that probabilistically maps dissociated single cells to their hypothetical tissue of origin using one or more references datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
 
 
+
+
+    <p align="center">
+        <a href="">
+            <img src="https://github.com/MarioniLab/sagenet/files/7663030/final.pdf"
+             width="400px" alt="sagenet logo">
+        </a>
+    </p>
+
 SageNet implemented with `pytorch <https://pytorch.org/docs/stable/index.html>`_ and `pytorch-geometric <https://pytorch-geometric.readthedocs.io/en/latest/>`_ in python to be modular, fast, and scalable.
 
 The workflow
