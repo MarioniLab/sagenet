@@ -1,6 +1,3 @@
-<!-- 
-|PyPI| |PyPIDownloads| |Docs| |travis| -->
-
 SageNet: spatial reconstruction of dissociated single-cell data using graph neural networks
 =========================================================================
 .. raw:: html
@@ -51,22 +48,6 @@ Then, ``cd`` to the scArches folder and run the install command::
 
 
 The dependency `torch-geometric` should be installed separately based on the system specefities, look at `this <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_. for the instructions. 
-
-
-<!-- Notebooks
--------------------------------
-To see some examples of our pipeline's capability, look at the `notbooks` directory. -->
-
-<!-- Final Report
--------------------------------
-The extended version of the report for this project can be found `here <https://github.com/EliHei2/scPotter/tree/main/notebooks/report>`_.
-
-Reproducing the report figures/tables
-**********************
-- `Preprocessing <https://github.com/EliHei2/scPotter/notebooks/GNN_input_prep_pbmc.rmd>`_
-- `Traning classifiers and finding important featuers <https://github.com/EliHei2/scPotter/notebooks/PBMC_captum.ipynb>`_
-- `Post analysis and visualization <https://github.com/EliHei2/scPotter/notebooks/final-report-GCN-2020-01-11-pbmc.rmd>`_ -->
-
 
 Support and contribute
 -------------------------------
