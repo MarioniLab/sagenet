@@ -21,7 +21,7 @@ The workflow
 
 #. Training phase:
 	* Input: 
-		* Expression matrix associated with the (spatial) reference dataset (an `anndata` object)
+		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 		* gene-gene interaction network
 
@@ -34,7 +34,7 @@ The workflow
 
 #. Mapping phase:
 	* Input: 
-		* Expression matrix associated with the (dissociated) query dataset (an `anndata` object)
+		* Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
 
 	* Output:
 		* The reconstructed cell-cell spatial distance matrix
@@ -58,13 +58,13 @@ First, clone the repository using ``git``::
 
     git clone https://github.com/MarioniLab/sagenet
 
-Then, ``cd`` to the scArches folder and run the install command::
+Then, ``cd`` to the sagenet folder and run the install command::
 
     cd sagenet
     python setup.py install #or pip install ` 
 
 
-The dependency `torch-geometric` should be installed separately based on the system specefities, look at `this <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for the instructions. 
+The dependency ``torch-geometric`` should be installed separately based on the system specefities, look at `this <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for the instructions. 
 
 Support and contribute
 -------------------------------
