@@ -14,7 +14,7 @@ SageNet: spatial reconstruction of dissociated single-cell data using graph neur
         </a>
     </p>
 
-SageNet is implemented with `pytorch <https://pytorch.org/docs/stable/index.html>`_ and `pytorch-geometric <https://pytorch-geometric.readthedocs.io/en/latest/>`_ in python to be modular, fast, and scalable.
+SageNet is implemented with `pytorch <https://pytorch.org/docs/stable/index.html>`_ and `pytorch-geometric <https://pytorch-geometric.readthedocs.io/en/latest/>`_ to be modular, fast, and scalable.
 
 The workflow
 -------------------------------
