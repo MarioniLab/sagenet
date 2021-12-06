@@ -2,7 +2,7 @@ SageNet: spatial reconstruction of dissociated single-cell data using graph neur
 =========================================================================
 .. raw:: html
 
-**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps dissociated single cells to their hypothetical tissue of origin using one or more references datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
+**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps a dissociated scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
 
 
 .. raw:: html
@@ -52,7 +52,8 @@ The workflow
 
 Usage and installation
 -------------------------------
-You can get the latest development version of our toolkit from `Github <https://github.com/e-sollier/DL2020/>`_ using the following steps:
+You can get the latest development version of our toolkit from `Github <https://github.com/MarioniLab/sagenet>`_ using the following steps:
+
 First, clone the repository using ``git``::
 
     git clone https://github.com/MarioniLab/sagenet
@@ -60,10 +61,10 @@ First, clone the repository using ``git``::
 Then, ``cd`` to the scArches folder and run the install command::
 
     cd sagenet
-    python setup.py install #or `pip install .` 
+    python setup.py install #or pip install ` 
 
 
-The dependency `torch-geometric` should be installed separately based on the system specefities, look at `this <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_. for the instructions. 
+The dependency `torch-geometric` should be installed separately based on the system specefities, look at `this <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for the instructions. 
 
 Support and contribute
 -------------------------------
