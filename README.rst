@@ -64,7 +64,7 @@ Then, ``cd`` to the sagenet folder and run the install command::
     python setup.py install #or pip install ` 
 
 
-The dependency ``torch-geometric`` should be installed separately based on the system specefities, look at `this <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for the instructions. 
+The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for the instructions. 
 
 Support and contribute
 -------------------------------
