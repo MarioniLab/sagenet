@@ -8,6 +8,13 @@ _MGA = AMetadata(
     url="https://figshare.com/ndownloader/files/31700690",
 )
 
+_seqFISH = AMetadata(
+    name="seqFISH",
+    doc_header="",
+    # shape=(270876, 43),
+    url="https://figshare.com/ndownloader/files/31700699",
+)
+
 for name, var in copy(locals()).items():
     if isinstance(var, AMetadata):
         var._create_function(name, globals())
@@ -15,4 +22,5 @@ for name, var in copy(locals()).items():
 
 __all__ = [  # noqa: F822
     "MGA",
+    "seqFISH"
 ]
