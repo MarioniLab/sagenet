@@ -47,12 +47,14 @@ The dependency ``torch-geometric`` should be installed separately, corresponding
 Usage
 -------------------------------
 ::
+
 	import sagenet as sg
 	import scanpy as sc
 	import squidpy as sq
 	import anndata as ad
 	import random
 	random.seed(10)
+	
 ..
 
 #. Training phase:
