@@ -9,7 +9,7 @@ import networkx as nx
 from community import community_louvain
 import umap
 import torch
-import torch_geometric.data as geo_dt
+import torch_geometric.loader as geo_dt
 from sklearn.utils.extmath import fast_logdet
 import scanpy as sc
 import igraph as ig
