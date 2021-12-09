@@ -36,32 +36,62 @@ The dependency ``torch-geometric`` should be installed separately, corresponding
 
 Usage
 -------------------------------
-```
+::
+
 import sagenet as sg
 import scanpy as sc
 import squidpy as sq
 import anndata as ad
 import random
 random.seed(10)
-```
+
+
 #. Training phase:
 	* Input: 
 		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)::
 		
+		adata_r = sg.datasets.seqFISH()
 		
-
 		* gene-gene interaction network
+		
+		glasso(adata_r, [0.5, 0.75, 1])
 
-		* one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
-
-	* Output:
-		* A set of pre-trained models (one for each partitioning)
-
-		* A concensus scoring of spatially informativity of each gene
+		* one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots::
+		
+		adata_r.obsm['spatial'] = np.array(adata_r.obs[['x','y']])
+		sq.gr.spatial_neighbors(adata_r, coord_type="generic")
+		sc.tl.leiden(adata_r, resolution=.01, random_state=0, key_added='leiden_0.01', adjacency=adata_r.obsp["spatial_connectivities"])
+		sc.tl.leiden(adata_r, resolution=.05, random_state=0, key_added='leiden_0.05', adjacency=adata_r.obsp["spatial_connectivities"])
+		sc.tl.leiden(adata_r, resolution=.1, random_state=0, key_added='leiden_0.1', adjacency=adata_r.obsp["spatial_connectivities"])
+		sc.tl.leiden(adata_r, resolution=.5, random_state=0, key_added='leiden_0.5', adjacency=adata_r.obsp["spatial_connectivities"])
+		sc.tl.leiden(adata_r, resolution=1, random_state=0, key_added='leiden_1', adjacency=adata_r.obsp["spatial_connectivities"])
+	
+	* Training: ::
+	
+		sg_obj = sg.sage.sage(device=device)
+		sg_obj.add_ref(adata_r, comm_columns=['leiden_0.01', 'leiden_0.05', 'leiden_0.1', 'leiden_0.5', 'leiden_1'], tag='seqFISH_ref', epochs=20, verbose = False)
+	
+	* Output: 
+		* A set of pre-trained models (one for each partitioning)::
+			
+			!mkdir models
+			!mkdir models/seqFISH_ref
+			sg_obj.save_model_as_folder('models/seqFISH_ref')
+		
+		* A concensus scoring of spatially informativity of each gene::
+		
+			ind = np.argsort(-adata_r.var['seqFISH_ref_entropy'])[0:12]
+			with rc_context({'figure.figsize': (4, 4)}):
+				sc.pl.spatial(adata_r, color=list(adata_r.var_names[ind]), ncols=4, spot_size=0.03, legend_loc=None)
+		
+		
 
 #. Mapping phase:
 	* Input: 
-		* Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
+		* Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)::
+		
+		adata_q = sg.datasets.MGA()
+		
 
 	* Output:
 		* The reconstructed cell-cell spatial distance matrix
