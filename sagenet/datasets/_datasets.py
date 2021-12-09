@@ -5,15 +5,31 @@ _MGA = AMetadata(
     name="MGA",
     doc_header="",
     # shape=(270876, 43),
-    url="https://figshare.com/ndownloader/files/31700690",
+    url="https://figshare.com/ndownloader/files/31716146",
 )
 
-_seqFISH = AMetadata(
+_seqFISH1 = AMetadata(
+    name="seqFISH1",
+    doc_header="",
+    # shape=(270876, 43),
+    url="https://figshare.com/ndownloader/files/31716029",
+)
+
+_seqFISH2 = AMetadata(
+    name="seqFISH2",
+    doc_header="",
+    # shape=(270876, 43),
+    url="https://figshare.com/ndownloader/files/31716041",
+)
+
+
+_seqFISH3 = AMetadata(
     name="seqFISH",
     doc_header="",
     # shape=(270876, 43),
-    url="https://figshare.com/ndownloader/files/31700699",
+    url="https://figshare.com/ndownloader/files/31716089",
 )
+
 
 for name, var in copy(locals()).items():
     if isinstance(var, AMetadata):
@@ -22,5 +38,7 @@ for name, var in copy(locals()).items():
 
 __all__ = [  # noqa: F822
     "MGA",
-    "seqFISH"
+    "seqFISH1",
+    "seqFISH2",
+    "seqFISH3"
 ]
