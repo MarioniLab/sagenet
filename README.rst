@@ -61,9 +61,8 @@ random.seed(10)
 		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 ::
-		
 		adata_r = sg.datasets.seqFISH()
-		
+::
 		
 		* gene-gene interaction network
 		
@@ -96,13 +95,11 @@ random.seed(10)
 	* Output: 
 		* A set of pre-trained models (one for each partitioning)
 
-::
-			
+::		
 			!mkdir models
 			!mkdir models/seqFISH_ref
-			sg_obj.save_model_as_folder('models/seqFISH_ref')
-		
-		
+			sg_obj.save_model_as_folder('models/seqFISH_ref')	
+::		
 		* A concensus scoring of spatially informativity of each gene
 
 ::
