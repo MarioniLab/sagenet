@@ -24,7 +24,7 @@ _seqFISH2 = AMetadata(
 
 
 _seqFISH3 = AMetadata(
-    name="seqFISH",
+    name="seqFISH3",
     doc_header="",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31716089",
