@@ -57,8 +57,8 @@ Usage
 	
 
 #. Training phase:
-	* Input: 
-		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
+* Input: 
+	* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 ::
 
@@ -66,7 +66,7 @@ Usage
 
 
 
-		* gene-gene interaction network
+* gene-gene interaction network
 		
 
 ::
@@ -76,7 +76,8 @@ Usage
 
 
 
-		* one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
+* one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
+
 ::
 
 	adata_r.obsm['spatial'] = np.array(adata_r.obs[['x','y']])
