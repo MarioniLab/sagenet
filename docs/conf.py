@@ -32,22 +32,17 @@ import sagenet
 
 from urllib.request import urlretrieve
 
-# notebooks_url = 'https://github.com/MarioniLab/sagenet/raw/master/notebooks/'
-# notebooks = [
-#     'scanvi_surgery_pipeline.ipynb',
-#     'scvi_surgery_pipeline.ipynb',
-#     'totalvi_surgery_pipeline.ipynb',
-#     'trvae_surgery_pipeline.ipynb',
-#     'trVAE_zenodo_pipeline.ipynb',
-#     'reference_building_from_scratch.ipynb',
-#      'scgen_map_query.ipynb'
-# ]
+notebooks_url = 'https://github.com/MarioniLab/sagenet/tree/main/notebooks'
+notebooks = [
+    '00_hello_sagenet.ipynb',
+    '01_multiple_references.ipynb'
+]
 
-# for nb in notebooks:
-#     try:
-#         urlretrieve(notebooks_url + nb, nb)
-#     except:
-#         pass
+for nb in notebooks:
+    try:
+        urlretrieve(notebooks_url + nb, nb)
+    except:
+        pass
 
 # -- Project information -----------------------------------------------------
 
