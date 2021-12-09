@@ -46,7 +46,7 @@ The dependency ``torch-geometric`` should be installed separately, corresponding
 
 Usage
 -------------------------------
-.. code-block:: python
+::
 	import sagenet as sg
 	import scanpy as sc
 	import squidpy as sq
