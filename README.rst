@@ -128,15 +128,14 @@ Usage
 
 - Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
 ::
-
 	
-adata_q = sg.datasets.MGA()
+	adata_q = sg.datasets.MGA()
 
 
 * Mapping:
 ::
 
-sg_obj.map_query(adata_q)
+	sg_obj.map_query(adata_q)
 
 
 * Output:
@@ -144,13 +143,13 @@ sg_obj.map_query(adata_q)
 - The reconstructed cell-cell spatial distance matrix 
 ::
 
-adata_q.obsm['dist_map']
+	adata_q.obsm['dist_map']
 
 
 - A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
 ::
 
-		adata_q.obs
+	adata_q.obs
 		
 
 .. raw:: html
