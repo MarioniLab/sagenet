@@ -56,7 +56,7 @@ Usage
 	random.seed(10)
 	
 
-**#. Training phase:**
+#. **Training phase:**
 
 **Input:=**
 - Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
@@ -122,7 +122,7 @@ Usage
 
 
 
-#. Mapping phase:
+#. **Mapping phase:**
 
 **Input:**
 
