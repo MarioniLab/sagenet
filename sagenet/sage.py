@@ -2,6 +2,7 @@
 # from classifier import *
 # from model import *
 from os import listdir
+import numpy as np
 
 class sage():
     def __init__(self, random_seed=1996, device='cpu'):
