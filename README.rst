@@ -58,7 +58,8 @@ Usage
 
 #. **Training phase:**
 
-**Input:=**
+**Input:**
+
 - Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 ::
