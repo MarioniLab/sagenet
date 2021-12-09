@@ -16,12 +16,39 @@ SageNet: spatial reconstruction of dissociated single-cell data using graph neur
 
 SageNet is implemented with `pytorch <https://pytorch.org/docs/stable/index.html>`_ and `pytorch-geometric <https://pytorch-geometric.readthedocs.io/en/latest/>`_ to be modular, fast, and scalable. Also, it uses ``anndata`` to be compatible with `scanpy <https://scanpy.readthedocs.io/en/stable/>`_ and `squidpy <https://squidpy.readthedocs.io/en/stable/>`_ for pre- and post-processing steps.
 
-The workflow
+Installation
 -------------------------------
+You can get the latest development version of our toolkit from `Github <https://github.com/MarioniLab/sagenet>`_ using the following steps:
 
+First, clone the repository using ``git``::
+
+    git clone https://github.com/MarioniLab/sagenet
+
+Then, ``cd`` to the sagenet folder and run the install command::
+
+    cd sagenet
+    python setup.py install #or pip install ` 
+
+
+The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. 
+
+
+
+Usage
+-------------------------------
+```
+import sagenet as sg
+import scanpy as sc
+import squidpy as sq
+import anndata as ad
+import random
+random.seed(10)
+```
 #. Training phase:
 	* Input: 
-		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
+		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)::
+		
+		
 
 		* gene-gene interaction network
 
@@ -50,21 +77,6 @@ The workflow
         </a>
     </p>
 
-Usage and installation
--------------------------------
-You can get the latest development version of our toolkit from `Github <https://github.com/MarioniLab/sagenet>`_ using the following steps:
-
-First, clone the repository using ``git``::
-
-    git clone https://github.com/MarioniLab/sagenet
-
-Then, ``cd`` to the sagenet folder and run the install command::
-
-    cd sagenet
-    python setup.py install #or pip install ` 
-
-
-The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. 
 
 Support and contribute
 -------------------------------
