@@ -138,18 +138,17 @@ adata_q = sg.datasets.MGA()
 
 sg_obj.map_query(adata_q)
 
+
 * Output:
 
 - The reconstructed cell-cell spatial distance matrix 
 ::
-
 
 adata_q.obsm['dist_map']
 
 
 - A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
 ::
-
 
 		adata_q.obs
 		
