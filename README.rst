@@ -59,15 +59,14 @@ Usage
 #. Training phase:
 
 * Input: 
-	* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
+- Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 ::
 
 	adata_r = sg.datasets.seqFISH()
 
 
-
-	* gene-gene interaction network
+- gene-gene interaction network
 		
 
 ::
@@ -77,7 +76,7 @@ Usage
 
 
 
-** one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
+- one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
 
 ::
 
@@ -91,7 +90,7 @@ Usage
 
 
 
-** Training: 
+* Training: 
 ::
 
 
@@ -101,7 +100,7 @@ Usage
 
 	
 * Output: 
-** A set of pre-trained models (one for each partitioning)
+- A set of pre-trained models (one for each partitioning)
 
 ::
 
@@ -111,7 +110,7 @@ Usage
 	sg_obj.save_model_as_folder('models/seqFISH_ref')	
 
 
-*** A concensus scoring of spatially informativity of each gene
+- A concensus scoring of spatially informativity of each gene
 
 ::
 
@@ -125,21 +124,24 @@ Usage
 
 #. Mapping phase:
 * Input: 
-** Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
+- Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
 ::
 
 	
-	adata_q = sg.datasets.MGA()
+adata_q = sg.datasets.MGA()
 
 
+* Mapping:
+::
+
+sg_obj.map_query(adata_q)
 
 * Output:
-** The reconstructed cell-cell spatial distance matrix 
+- The reconstructed cell-cell spatial distance matrix 
 ::
 
 
-		adata_q.obsm['dist_map']
-
+adata_q.obsm['dist_map']
 
 
 
