@@ -59,15 +59,15 @@ Usage
 #. Training phase:
 
 * Input: 
-** Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
+	* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 ::
 
 	adata_r = sg.datasets.seqFISH()
 
 
-
-** gene-gene interaction network
+*
+	* gene-gene interaction network
 		
 
 ::
