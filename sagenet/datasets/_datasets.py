@@ -40,5 +40,5 @@ __all__ = [  # noqa: F822
     "MGA",
     "seqFISH1",
     "seqFISH2",
-    "seqFISH3"
+    "seqFISH3",
 ]
