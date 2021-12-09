@@ -9,7 +9,7 @@ SageNet: spatial reconstruction of dissociated single-cell data using graph neur
 
     <p align="center">
         <a href="">
-            <img src="https://github.com/MarioniLab/sagenet/files/7663030/final.pdf"
+            <img src="https://github.com/MarioniLab/sagenet/files/7687951/final.pdf"
              width="700px" alt="sagenet logo">
         </a>
     </p>
