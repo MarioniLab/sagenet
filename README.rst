@@ -56,9 +56,9 @@ Usage
 	random.seed(10)
 	
 
-#. Training phase:
+**#. Training phase:**
 
-* Input: 
+**Input:=**
 - Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 ::
@@ -90,7 +90,7 @@ Usage
 
 
 
-* Training: 
+**Training:** 
 ::
 
 
@@ -99,7 +99,7 @@ Usage
 
 
 	
-* Output: 
+**Output:**
 - A set of pre-trained models (one for each partitioning)
 
 ::
@@ -124,7 +124,7 @@ Usage
 
 #. Mapping phase:
 
-* Input: 
+**Input:**
 
 - Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
 ::
@@ -132,13 +132,13 @@ Usage
 	adata_q = sg.datasets.MGA()
 
 
-* Mapping:
+**Mapping:**
 ::
 
 	sg_obj.map_query(adata_q)
 
 
-* Output:
+**Output:**
 
 - The reconstructed cell-cell spatial distance matrix 
 ::
