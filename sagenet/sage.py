@@ -3,6 +3,7 @@ from sagenet.classifier import *
 from sagenet.model import *
 from os import listdir
 import numpy as np
+import anndata
 
 class sage():
     def __init__(self, random_seed=1996, device='cpu'):
