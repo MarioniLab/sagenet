@@ -150,6 +150,20 @@ Usage
 ::
 
 	adata_q.obs
+	
+::
+	import anndata
+	dist_adata = anndata.AnnData(adata_q.obsm['dist_map'], obs = adata_q.obs)
+	knn_indices, knn_dists, forest = sc.neighbors.compute_neighbors_umap(dist_adata.X, n_neighbors=50, metric='precomputed')
+	dist_adata.obsp['distances'], dist_adata.obsp['connectivities'] = sc.neighbors._compute_connectivities_umap(
+	    knn_indices,
+	    knn_dists,
+	    dist_adata.shape[0],
+	    50, # change to neighbors you plan to use
+	)
+	sc.pp.neighbors(dist_adata, metric='precomputed', use_rep='X')
+	sc.tl.umap(dist_adata)
+	sc.pl.umap(dist_adata, color='cell_type', palette=celltype_colours)
 		
 
 .. raw:: html
