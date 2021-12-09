@@ -20,7 +20,8 @@ class sage():
         num_workers  = 0,
         batch_size   = 32,
         epochs       = 10,
-        n_genes      = 10):
+        n_genes      = 10,
+        verbose      = False):
 
         ents = np.zeros(adata.shape[1])
         self.num_refs += 1
@@ -50,7 +51,7 @@ class sage():
                 device       = self.device
             ) 
 
-            clf.fit(data_loader, epochs = epochs, test_dataloader=None,verbose=True)
+            clf.fit(data_loader, epochs = epochs, test_dataloader=None,verbose=verbose)
             _, ent = clf.interpret(data_loader, n_features=adata.shape[1], n_classes=(np.max(adata.obs[comm].values.astype('long'))+1))
             ents  += ent
             self.models['_'.join([tag, comm])] = clf.net
