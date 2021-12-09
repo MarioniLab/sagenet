@@ -152,6 +152,7 @@ Usage
 	adata_q.obs
 	
 ::
+
 	import anndata
 	dist_adata = anndata.AnnData(adata_q.obsm['dist_map'], obs = adata_q.obs)
 	knn_indices, knn_dists, forest = sc.neighbors.compute_neighbors_umap(dist_adata.X, n_neighbors=50, metric='precomputed')
