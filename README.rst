@@ -100,6 +100,7 @@ Usage
 
 	
 **Output:**
+
 - A set of pre-trained models (one for each partitioning)
 
 ::
