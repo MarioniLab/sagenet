@@ -59,7 +59,7 @@ Usage
 #. Training phase:
 
 * Input: 
-	* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
+** Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
 
 ::
 
@@ -67,7 +67,7 @@ Usage
 
 
 
-* gene-gene interaction network
+** gene-gene interaction network
 		
 
 ::
@@ -77,7 +77,7 @@ Usage
 
 
 
-* one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
+** one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
 
 ::
 
@@ -91,7 +91,7 @@ Usage
 
 
 
-	* Training: 
+** Training: 
 ::
 
 
@@ -100,8 +100,8 @@ Usage
 
 
 	
-	* Output: 
-		* A set of pre-trained models (one for each partitioning)
+* Output: 
+** A set of pre-trained models (one for each partitioning)
 
 ::
 
@@ -111,8 +111,7 @@ Usage
 	sg_obj.save_model_as_folder('models/seqFISH_ref')	
 
 
-
-		* A concensus scoring of spatially informativity of each gene
+*** A concensus scoring of spatially informativity of each gene
 
 ::
 
@@ -125,8 +124,8 @@ Usage
 
 
 #. Mapping phase:
-	* Input: 
-		* Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
+* Input: 
+** Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
 ::
 
 	
@@ -134,8 +133,8 @@ Usage
 
 
 
-	* Output:
-		* The reconstructed cell-cell spatial distance matrix 
+* Output:
+** The reconstructed cell-cell spatial distance matrix 
 ::
 
 
@@ -144,13 +143,11 @@ Usage
 
 
 
-
-		* A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
+** A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
 ::
 
 
 		adata_q.obs
-
 		
 
 .. raw:: html
@@ -158,7 +155,7 @@ Usage
     <p align="center">
         <a href="">
             <img src="https://github.com/MarioniLab/sagenet/files/7687712/umapeli-11.pdf"
-             width="400px" alt="umap">
+             width="900px" alt="umap">
         </a>
     </p>
 		
