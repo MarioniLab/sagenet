@@ -188,7 +188,7 @@ To see some examples of our pipeline's capability, look at the ``notbooks` <http
 		
 Interactive examples
 -------------------------------
-See _`this` <https://www.dropbox.com/s/krjgp19i62p7nfx/joint_mapping-2_interactive.html?dl=0>`_ 
+See `this` <https://www.dropbox.com/s/krjgp19i62p7nfx/joint_mapping-2_interactive.html?dl=0>`_ 
 
 
 Support and contribute
