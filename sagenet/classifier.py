@@ -3,8 +3,8 @@ from torch.optim import lr_scheduler
 import torch.nn as nn
 from torch.utils.data import TensorDataset, DataLoader, random_split
 from torch.utils.tensorboard import SummaryWriter
-# from utils import compute_metrics
-# from model import *
+from utils import compute_metrics
+from model import *
 from captum import *
 from captum.attr import IntegratedGradients
 import numpy as np

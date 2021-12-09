@@ -1,7 +1,6 @@
 import os
 import csv
 import numpy as np
-# from graspologic.simulations import sbm
 from sklearn.metrics import *
 from sklearn.covariance import GraphicalLassoCV, graphical_lasso, LedoitWolf
 from sklearn.preprocessing import StandardScaler

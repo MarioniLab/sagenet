@@ -3,7 +3,4 @@ __email__ = ['eheidari@student.ethz.ch']
 __version__ = "0.1.0"
 
 from . import classifier, model, sage, utils, datasets
-from utils import *
-from models import *
-from classifier import *
 
