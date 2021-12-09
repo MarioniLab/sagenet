@@ -1,6 +1,6 @@
-from utils import *
-from classifier import *
-from model import *
+from sagenet.utils import *
+from sagenet.classifier import *
+from sagenet.model import *
 from os import listdir
 import numpy as np
 
