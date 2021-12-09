@@ -33,6 +33,16 @@ Then, ``cd`` to the sagenet folder and run the install command::
 The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. 
 
 
+.. raw:: html
+
+    <p align="center">
+        <a href="">
+            <img src="https://user-images.githubusercontent.com/55977725/144909791-7b451f94-bcf4-4f2d-9f7e-6c1a692e6ffd.gif"
+             width="400px" alt="activations logo">
+        </a>
+    </p>
+
+
 
 Usage
 -------------------------------
@@ -48,15 +58,21 @@ random.seed(10)
 
 #. Training phase:
 	* Input: 
-		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)::
+		* Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
+
+::
 		
 		adata_r = sg.datasets.seqFISH()
 		
 		* gene-gene interaction network
+
+::
 		
 		glasso(adata_r, [0.5, 0.75, 1])
 
-		* one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots::
+		* one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
+
+::
 		
 		adata_r.obsm['spatial'] = np.array(adata_r.obs[['x','y']])
 		sq.gr.spatial_neighbors(adata_r, coord_type="generic")
@@ -66,19 +82,24 @@ random.seed(10)
 		sc.tl.leiden(adata_r, resolution=.5, random_state=0, key_added='leiden_0.5', adjacency=adata_r.obsp["spatial_connectivities"])
 		sc.tl.leiden(adata_r, resolution=1, random_state=0, key_added='leiden_1', adjacency=adata_r.obsp["spatial_connectivities"])
 	
-	* Training: ::
+	* Training: 
+::
 	
 		sg_obj = sg.sage.sage(device=device)
 		sg_obj.add_ref(adata_r, comm_columns=['leiden_0.01', 'leiden_0.05', 'leiden_0.1', 'leiden_0.5', 'leiden_1'], tag='seqFISH_ref', epochs=20, verbose = False)
 	
 	* Output: 
-		* A set of pre-trained models (one for each partitioning)::
+		* A set of pre-trained models (one for each partitioning)
+
+::
 			
 			!mkdir models
 			!mkdir models/seqFISH_ref
 			sg_obj.save_model_as_folder('models/seqFISH_ref')
 		
-		* A concensus scoring of spatially informativity of each gene::
+		* A concensus scoring of spatially informativity of each gene
+
+::
 		
 			ind = np.argsort(-adata_r.var['seqFISH_ref_entropy'])[0:12]
 			with rc_context({'figure.figsize': (4, 4)}):
@@ -88,25 +109,30 @@ random.seed(10)
 
 #. Mapping phase:
 	* Input: 
-		* Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)::
+		* Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
+::
 		
 		adata_q = sg.datasets.MGA()
 		
 
 	* Output:
-		* The reconstructed cell-cell spatial distance matrix
+		* The reconstructed cell-cell spatial distance matrix 
+::
+		adata_q.obsm['dist_map']
 
 		* A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
-		
+::
+		adata_q.obs
+
 .. raw:: html
 
     <p align="center">
         <a href="">
-            <img src="https://user-images.githubusercontent.com/55977725/144909791-7b451f94-bcf4-4f2d-9f7e-6c1a692e6ffd.gif"
-             width="400px" alt="activations logo">
+            <img src="https://github.com/MarioniLab/sagenet/files/7687712/umapeli-11.pdf"
+             width="400px" alt="umap">
         </a>
     </p>
-
+		
 
 Support and contribute
 -------------------------------
