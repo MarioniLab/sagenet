@@ -209,5 +209,5 @@ post an `issue <https://github.com/MarioniLab/sagenet/issues/new>`__ or reach us
 
 Contributions
 -------------------------------
-This work is led by Elyas Heidari and Shile Ghazanfar as a joint effort between `MarioniLab@CRUK@EMBL-EBI <https://www.ebi.ac.uk/research-beta/marioni/>`__ and `RobinsonLab@UZH <https://robinsonlabuzh.github.io>`__.
+This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between `MarioniLab@CRUK@EMBL-EBI <https://www.ebi.ac.uk/research-beta/marioni/>`__ and `RobinsonLab@UZH <https://robinsonlabuzh.github.io>`__.
 
