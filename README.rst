@@ -207,3 +207,7 @@ If you have a question or new architecture or a model that could be integrated i
 post an `issue <https://github.com/MarioniLab/sagenet/issues/new>`__ or reach us by `email <mailto:eheidari@student.ethz.ch>`_.
 
 
+Contributions
+-------------------------------
+This work is led by Elyas Heidari and Shile Ghazanfar as a joint effort between `MarioniLab@CRUK@EMBL-EBI <https://www.ebi.ac.uk/research-beta/marioni/>`__ and `RobinsonLab@UZH <https://robinsonlabuzh.github.io>`__.
+
