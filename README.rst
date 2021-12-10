@@ -2,7 +2,7 @@ SageNet: single-cell locator
 =========================================================================
 .. raw:: html
 
-**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps cells from a dissociated scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
+**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps  dissociated single cells from an scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
 
 
 .. raw:: html
@@ -191,7 +191,7 @@ Usage
 
 Notebooks
 -------------------------------
-To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble as google colab docs:
+To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble on google colab:
 
 #. `Intro to SageNet <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 #. `Using multiple references <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
