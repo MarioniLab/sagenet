@@ -207,7 +207,23 @@ class Classifier():
             print('f1_score: {:.3f}'.format(f1_score))
         return accuracy, conf_mat, precision, recall, f1_score
 
-    def interpret(self, data_loader, n_features, n_classes, save_path=None):
+    def interpret(self, data_loader, n_features, n_classes):
+        """interprets a trained model, by giving importance scores assigned to each feature regarding each class
+            it uses the `IntegratedGradients` method from the package `captum` to computed class-wise feature importances and then computes entropy values to get a global importance measure.
+            
+            Parameters
+            ----------
+            data_loder : torch-geometric dataloader, default=None
+                the dataset on which the model is evaluated.
+            n_features : int
+                number of features.
+            n_classes : int
+                number of classes.
+            
+            Returns
+            ----------
+            ent : numpy ndarray, shape (n_features)
+        """  
         batch = next(iter(data_loader))
         e = batch.edge_index.to(self.device).long()
         def model_forward(input):
@@ -225,4 +241,4 @@ class Classifier():
             importances[:, target.to('cpu').numpy()] += attributions
         imp = (np.e**importances.T / np.sum(np.e**importances, axis = 1)).T
         ent = (-imp * np.log2(imp)).sum(axis = 1) / np.log2(n_classes)
-        return importances, ent
+        return ent

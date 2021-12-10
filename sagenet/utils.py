@@ -9,26 +9,37 @@ import networkx as nx
 from community import community_louvain
 import umap
 import torch
-import torch_geometric.data as geo_dt 
+# import torch_geometric.data as geo_dt 
 from sklearn.utils.extmath import fast_logdet
 import scanpy as sc
 import igraph as ig
 import numpy as np
 from scipy import sparse
 
+
+
 def glasso(adata, alphas=5, n_jobs=None, mode='cd'):
     """
-        Estimates the graph with graphical lasso finding the best alpha based on cross validation
+        Recustructs the gene-gene interaction network based on gene expressions in `.X` using a guassian graphical model estimated by `glasso`. 
 
         Parameters
         ----------
-        data: numpy ndarray
-            The input data for to reconstruct/estimate a graph on. Features as columns and observations as rows.
-        alphas: int or array-like of shape (n_alphas,), dtype=float, default=5
+        adata: `AnnData` 
+            The annotated data matrix of shape `n_obs × n_vars`. Rows correspond to cells and columns to genes.
+        alphas: int or array-like of shape (n_alphas,), dtype=`float`, default=`5`
             Non-negative. If an integer is given, it fixes the number of points on the grids of alpha to be used. If a list is given, it gives the grid to be used. 
+        n_jobs: int, default `None`
+            Non-negative. number of jobs.
+
         Returns
         -------
-        adjacency matrix : the estimated adjacency matrix.
+        adds an `csr_matrix` matrix under key `adj` to `.varm`.
+
+        References
+        -----------
+        Friedman, J., Hastie, T., & Tibshirani, R. (2008). 
+        Sparse inverse covariance estimation with the graphical lasso. 
+        Biostatistics, 9(3), 432-441.
     """
     scaler = StandardScaler()
     data = scaler.fit_transform(adata.X)
@@ -43,7 +54,7 @@ def compute_metrics(y_true, y_pred):
     """
         Computes prediction quality metrics.
 
-        Parameters:
+        Parameters
         ----------
         y_true : 1d array-like, or label indicator array / sparse matrix
             Ground truth (correct) labels.
@@ -51,7 +62,7 @@ def compute_metrics(y_true, y_pred):
         y_pred : 1d array-like, or label indicator array / sparse matrix
             Predicted labels, as returned by a classifier.
 
-        Returns:
+        Returns
         --------
         accuracy : accuracy
         conf_mat : confusion matrix
@@ -69,11 +80,11 @@ def compute_metrics(y_true, y_pred):
 
 
 
-def get_dataloader(graph, X, y, batch_size=1,undirected=True, shuffle=True, num_workers=0):
+def get_dataloader(graph, X, y, batch_size=1, undirected=True, shuffle=True, num_workers=0):
     """
         Converts a graph and a dataset to a dataloader.
         
-        Parameters:
+        Parameters
         ----------
         graph : igraph object
             The underlying graph to be fed to the graph neural networks.
@@ -90,7 +101,14 @@ def get_dataloader(graph, X, y, batch_size=1,undirected=True, shuffle=True, num_
         undirected: boolean
             if the input graph is undirected (symmetric adjacency matrix).
 
-        Returns:
+        shuffle: boolean, default = `True`
+            Wheather to shuffle the dataset to be passed to `torch_geometric.data.DataLoader`.
+
+        num_workers: int, default = 0
+            Non-negative. Number of workers to be passed to `torch_geometric.data.DataLoader`.
+
+
+        Returns
         --------
         dataloader : a pytorch-geometric dataloader. All of the graphs will have the same connectivity (given by the input graph),
         but the node features will be the features from X.
@@ -124,31 +142,30 @@ def get_dataloader(graph, X, y, batch_size=1,undirected=True, shuffle=True, num_
 
 def kullback_leibler_divergence(X):
 
-    """
-    Finds the pairwise Kullback-Leibler divergence
-    matrix between all rows in X.
+    """Finds the pairwise Kullback-Leibler divergence
+        matrix between all rows in X.
 
-    Parameters
-    ----------
-    X : array_like, shape (n_samples, n_features)
-        Array of probability data. Each row must sum to 1.
+        Parameters
+        ----------
+        X : array_like, shape (n_samples, n_features)
+            Array of probability data. Each row must sum to 1.
 
-    Returns
-    -------
-    D : ndarray, shape (n_samples, n_samples)
-        The Kullback-Leibler divergence matrix. A pairwise matrix D such that D_{i, j}
-        is the divergence between the ith and jth vectors of the given matrix X.
+        Returns
+        -------
+        D : ndarray, shape (n_samples, n_samples)
+            The Kullback-Leibler divergence matrix. A pairwise matrix D such that D_{i, j}
+            is the divergence between the ith and jth vectors of the given matrix X.
 
-    Notes
-    -----
-    Based on code from Gordon J. Berman et al.
-    (https://github.com/gordonberman/MotionMapper)
+        Notes
+        -----
+        Based on code from Gordon J. Berman et al.
+        (https://github.com/gordonberman/MotionMapper)
 
-    References:
-    -----------
-    Berman, G. J., Choi, D. M., Bialek, W., & Shaevitz, J. W. (2014). 
-    Mapping the stereotyped behaviour of freely moving fruit flies. 
-    Journal of The Royal Society Interface, 11(99), 20140672.
+        References
+        -----------
+        Berman, G. J., Choi, D. M., Bialek, W., & Shaevitz, J. W. (2014). 
+        Mapping the stereotyped behaviour of freely moving fruit flies. 
+        Journal of The Royal Society Interface, 11(99), 20140672.
     """
 
     X_log = np.log(X)
@@ -164,14 +181,20 @@ def kullback_leibler_divergence(X):
     return D
 
 def multinomial_rvs(n, p):
-    """
-    Sample from the multinomial distribution with multiple p vectors.
+    """Sample from the multinomial distribution with multiple p vectors.
 
-    * n must be a scalar.
-    * p must an n-dimensional numpy array, n >= 1.  The last axis of p
-      holds the sequence of probabilities for a multinomial distribution.
-
-    The return value has the same shape as p.
+        Parameters
+        ----------
+        n : int
+            must be a scalar >=1
+        p : numpy ndarray 
+            must an n-dimensional 
+            he last axis of p holds the sequence of probabilities for a multinomial distribution.
+        
+        Returns
+        -------
+        D : ndarray
+            same shape as p
     """
     count = np.full(p.shape[:-1], n)
     out = np.zeros(p.shape, dtype=int)
@@ -188,5 +211,19 @@ def multinomial_rvs(n, p):
     return out
 
 def save_adata(adata, attr, key, data):
+    """updates an attribute of an `AnnData` object
+
+        Parameters
+        ----------
+        adata : `AnnData` 
+            The annotated data matrix of shape `n_obs × n_vars`. Rows correspond to cells and columns to genes.
+        attr : str
+            must be an attribute of `adata`, e.g., `obs`, `var`, etc.
+    `   key : str
+            must be a key in the attr
+        data : non-specific
+            the data to be updated/placed
+
+    """
     obj = getattr(adata, attr)
     obj[key] = data
