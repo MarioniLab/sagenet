@@ -160,8 +160,8 @@ class sage():
             dir : dir, defult=`'.'`
                 The saving directory.
         """    
-      path = os.path.join(dir, tag) + '.pickle'
-      torch.save(self.models[tag], path)
+        path = os.path.join(dir, tag) + '.pickle'
+        torch.save(self.models[tag], path)
 
     def load_model(self, tag, dir='.'):
         """Loads a single pre-trained model.
@@ -173,37 +173,37 @@ class sage():
             dir : dir, defult=`'.'`
                 The input directory.
         """    
-      path = os.path.join(dir, tag) + '.pickle'
-      self.models[tag] = torch.load(path)
+        path = os.path.join(dir, tag) + '.pickle'
+        self.models[tag] = torch.load(path)
 
     def save_model_as_folder(self, dir='.'):
-      """Saves all trained models stored in the `sagenet` object as a folder.
+        """Saves all trained models stored in the `sagenet` object as a folder.
 
             Parameters
             ----------
             dir : dir, defult=`'.'`
                 The saving directory.
-      """   
-      for tag in self.models.keys():
-        self.save_model(tag, dir)
-        adj_path = os.path.join(dir, tag) + '.h5ad'
-        adj_adata = anndata.AnnData(X = self.adjs[tag])
-        adj_adata.write(filename=adj_path)
+        """   
+        for tag in self.models.keys():
+            self.save_model(tag, dir)
+            adj_path = os.path.join(dir, tag) + '.h5ad'
+            adj_adata = anndata.AnnData(X = self.adjs[tag])
+            adj_adata.write(filename=adj_path)
 
     def load_model_as_folder(self, dir='.'):
-      """Loads pre-trained models from a directory.
+          """Loads pre-trained models from a directory.
 
-            Parameters
-            ----------
-            dir : dir, defult=`'.'`
-                The input directory.
-      """    
-      model_files = [f for f in listdir(dir) if re.search(r".pickle$", f)]
-      for m in model_files:
-        tag = re.sub(r'.pickle', '', m)
-        model_path = os.path.join(dir, tag) + '.pickle'
-        adj_path = os.path.join(dir, tag) + '.h5ad'
-        self.models[tag] = torch.load(model_path)
-        self.adjs[tag] = sc.read_h5ad(adj_path).X
+                Parameters
+                ----------
+                dir : dir, defult=`'.'`
+                    The input directory.
+          """    
+        model_files = [f for f in listdir(dir) if re.search(r".pickle$", f)]
+        for m in model_files:
+            tag = re.sub(r'.pickle', '', m)
+            model_path = os.path.join(dir, tag) + '.pickle'
+            adj_path = os.path.join(dir, tag) + '.h5ad'
+            self.models[tag] = torch.load(model_path)
+            self.adjs[tag] = sc.read_h5ad(adj_path).X
 
 
