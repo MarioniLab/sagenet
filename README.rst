@@ -64,7 +64,7 @@ Usage
 
 ::
 
-	adata_r = sg.datasets.seqFISH()
+	adata_r = sg.datasets.seqFISH1()
 
 
 - gene-gene interaction network
