@@ -1,5 +1,5 @@
 anndata
-torch
+torch~=1.10
 networkx
 python-louvain
 python-igraph
