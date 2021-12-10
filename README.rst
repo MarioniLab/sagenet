@@ -9,7 +9,7 @@ SageNet: single-cell locator
 
     <p align="center">
         <a href="">
-            <img src="https://github.com/MarioniLab/sagenet/files/7687951/final.pdf"
+            <img src="https://user-images.githubusercontent.com/55977725/145551267-2611c05f-0f7f-49e5-8859-0e6f5994bdb0.png"
              width="700px" alt="sagenet logo">
         </a>
     </p>
