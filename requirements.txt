@@ -11,3 +11,4 @@ scipy
 squidpy
 captum
 tensorboard
+nbsphinx
