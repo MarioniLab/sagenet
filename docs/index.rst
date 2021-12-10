@@ -2,7 +2,7 @@
    sphinx-quickstart on Tue Dec  7 05:28:34 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
-SageNet: single-cell locator
+SageNet: Spatial reconstruction of single-cell dissociated datasets using graph neural networks
 =========================================================================
 .. raw:: html
 
@@ -47,152 +47,6 @@ The dependency ``torch-geometric`` should be installed separately, corresponding
     </p>
 
 
-
-Usage
--------------------------------
-::
-
-	import sagenet as sg
-	import scanpy as sc
-	import squidpy as sq
-	import anndata as ad
-	import random
-	random.seed(10)
-	
-
-#. **Training phase:**
-
-**Input:**
-
-- Expression matrix associated with the (spatial) reference dataset (an ``anndata`` object)
-
-::
-
-	adata_r = sg.datasets.seqFISH1()
-
-
-- gene-gene interaction network
-		
-
-::
-
-	glasso(adata_r, [0.5, 0.75, 1])
-
-
-
-
-- one or more partitionings of the spatial reference into distinct connected neighborhoods of cells or spots
-
-::
-
-	adata_r.obsm['spatial'] = np.array(adata_r.obs[['x','y']])
-	sq.gr.spatial_neighbors(adata_r, coord_type="generic")
-	sc.tl.leiden(adata_r, resolution=.01, random_state=0, key_added='leiden_0.01', adjacency=adata_r.obsp["spatial_connectivities"])
-	sc.tl.leiden(adata_r, resolution=.05, random_state=0, key_added='leiden_0.05', adjacency=adata_r.obsp["spatial_connectivities"])
-	sc.tl.leiden(adata_r, resolution=.1, random_state=0, key_added='leiden_0.1', adjacency=adata_r.obsp["spatial_connectivities"])
-	sc.tl.leiden(adata_r, resolution=.5, random_state=0, key_added='leiden_0.5', adjacency=adata_r.obsp["spatial_connectivities"])
-	sc.tl.leiden(adata_r, resolution=1, random_state=0, key_added='leiden_1', adjacency=adata_r.obsp["spatial_connectivities"])
-
-
-
-**Training:** 
-::
-
-
-	sg_obj = sg.sage.sage(device=device)
-	sg_obj.add_ref(adata_r, comm_columns=['leiden_0.01', 'leiden_0.05', 'leiden_0.1', 'leiden_0.5', 'leiden_1'], tag='seqFISH_ref', epochs=20, verbose = False)
-
-
-	
-**Output:**
-
-- A set of pre-trained models (one for each partitioning)
-
-::
-
-
-	!mkdir models
-	!mkdir models/seqFISH_ref
-	sg_obj.save_model_as_folder('models/seqFISH_ref')	
-
-
-- A concensus scoring of spatially informativity of each gene
-
-::
-
-
-	ind = np.argsort(-adata_r.var['seqFISH_ref_entropy'])[0:12]
-	with rc_context({'figure.figsize': (4, 4)}):
-		sc.pl.spatial(adata_r, color=list(adata_r.var_names[ind]), ncols=4, spot_size=0.03, legend_loc=None)
-
-
-.. raw:: html
-
-    <p align="center">
-        <a href="">
-            <img src="https://user-images.githubusercontent.com/55977725/145543540-23a51e03-c860-422f-b2e5-14da5f07669d.png"
-             width="800px" alt="spatial markers">
-        </a>
-    </p>
-
-
-
-
-#. **Mapping phase:**
-
-**Input:**
-
-- Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
-::
-	
-	adata_q = sg.datasets.MGA()
-
-
-**Mapping:**
-::
-
-	sg_obj.map_query(adata_q)
-
-
-**Output:**
-
-- The reconstructed cell-cell spatial distance matrix 
-::
-
-	adata_q.obsm['dist_map']
-
-
-- A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
-::
-
-	adata_q.obs
-	
-::
-
-	import anndata
-	dist_adata = anndata.AnnData(adata_q.obsm['dist_map'], obs = adata_q.obs)
-	knn_indices, knn_dists, forest = sc.neighbors.compute_neighbors_umap(dist_adata.X, n_neighbors=50, metric='precomputed')
-	dist_adata.obsp['distances'], dist_adata.obsp['connectivities'] = sc.neighbors._compute_connectivities_umap(
-	    knn_indices,
-	    knn_dists,
-	    dist_adata.shape[0],
-	    50, # change to neighbors you plan to use
-	)
-	sc.pp.neighbors(dist_adata, metric='precomputed', use_rep='X')
-	sc.tl.umap(dist_adata)
-	sc.pl.umap(dist_adata, color='cell_type', palette=celltype_colours)
-		
-
-.. raw:: html
-
-    <p align="center">
-        <a href="">
-            <img src="https://github.com/MarioniLab/sagenet/files/7687712/umapeli-11.pdf"
-             width="900px" alt="reconstructed space">
-        </a>
-    </p>
-
-
 Notebooks
 -------------------------------
 To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble on google colab:
@@ -225,21 +79,13 @@ This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between 
 
    about
    installation
-   api/index.rst
-   model_sharing
-   training_tips
-
+   api.rst
+   
 .. toctree::
    :maxdepth: 1
    :caption: Examples
    :hidden:
 
-   scvi_surgery_pipeline
-   scanvi_surgery_pipeline
-   totalvi_surgery_pipeline
-   trvae_surgery_pipeline
-   trVAE_zenodo_pipeline
-   reference_building_from_scratch
-   pbmc_pipeline_trvae_scvi_scanvi
-   scgen_map_query
-
+   01_multiple_references
+   00_hello_sagenet
+   
