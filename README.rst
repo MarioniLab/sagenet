@@ -181,7 +181,7 @@ Usage
 
 Notebooks
 -------------------------------
-To see some examples of our pipeline's capability, look at the `notbooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble as google colab docs:
+To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble as google colab docs:
 
 #. `Intro to SageNet <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 #. `Using multiple references <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
