@@ -2,19 +2,18 @@
    sphinx-quickstart on Tue Dec  7 05:28:34 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
-   
 SageNet: single-cell locator
 =========================================================================
 .. raw:: html
 
-**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps a dissociated scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
+**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps  dissociated single cells from an scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
 
 
 .. raw:: html
 
     <p align="center">
         <a href="">
-            <img src="https://github.com/MarioniLab/sagenet/files/7687951/final.pdf"
+            <img src="https://user-images.githubusercontent.com/55977725/145551267-2611c05f-0f7f-49e5-8859-0e6f5994bdb0.png"
              width="700px" alt="sagenet logo">
         </a>
     </p>
@@ -69,7 +68,7 @@ Usage
 
 ::
 
-	adata_r = sg.datasets.seqFISH()
+	adata_r = sg.datasets.seqFISH1()
 
 
 - gene-gene interaction network
@@ -196,7 +195,7 @@ Usage
 
 Notebooks
 -------------------------------
-To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble as google colab docs:
+To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble on google colab:
 
 #. `Intro to SageNet <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 #. `Using multiple references <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
@@ -210,6 +209,11 @@ Support and contribute
 -------------------------------
 If you have a question or new architecture or a model that could be integrated into our pipeline, you can
 post an `issue <https://github.com/MarioniLab/sagenet/issues/new>`__ or reach us by `email <mailto:eheidari@student.ethz.ch>`_.
+
+
+Contributions
+-------------------------------
+This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between `MarioniLab@CRUK@EMBL-EBI <https://www.ebi.ac.uk/research-beta/marioni/>`__ and `RobinsonLab@UZH <https://robinsonlabuzh.github.io>`__.
 
 
 
