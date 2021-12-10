@@ -1,4 +1,4 @@
-SageNet: spatial reconstruction of dissociated single-cell data using graph neural networks
+SageNet: single-cell locator
 =========================================================================
 .. raw:: html
 
