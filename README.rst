@@ -122,6 +122,16 @@ Usage
 		sc.pl.spatial(adata_r, color=list(adata_r.var_names[ind]), ncols=4, spot_size=0.03, legend_loc=None)
 
 
+.. raw:: html
+
+    <p align="center">
+        <a href="">
+            <img src="https://user-images.githubusercontent.com/55977725/145543540-23a51e03-c860-422f-b2e5-14da5f07669d.png"
+             width="800px" alt="spatial markers">
+        </a>
+    </p>
+
+
 
 
 #. **Mapping phase:**
@@ -174,7 +184,7 @@ Usage
     <p align="center">
         <a href="">
             <img src="https://github.com/MarioniLab/sagenet/files/7687712/umapeli-11.pdf"
-             width="900px" alt="umap">
+             width="900px" alt="reconstructed space">
         </a>
     </p>
 
