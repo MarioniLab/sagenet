@@ -191,13 +191,13 @@ class sage():
             adj_adata.write(filename=adj_path)
 
     def load_model_as_folder(self, dir='.'):
-          """Loads pre-trained models from a directory.
+        """Loads pre-trained models from a directory.
 
-                Parameters
-                ----------
-                dir : dir, defult=`'.'`
-                    The input directory.
-          """    
+            Parameters
+            ----------
+            dir : dir, defult=`'.'`
+                The input directory.
+        """
         model_files = [f for f in listdir(dir) if re.search(r".pickle$", f)]
         for m in model_files:
             tag = re.sub(r'.pickle', '', m)
