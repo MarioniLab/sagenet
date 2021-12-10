@@ -12,3 +12,4 @@ squidpy
 captum
 tensorboard
 nbsphinx
+numpydoc
