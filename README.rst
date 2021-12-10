@@ -2,7 +2,7 @@ SageNet: single-cell locator
 =========================================================================
 .. raw:: html
 
-**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps a dissociated scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
+**SageNet** is a robust and generalizable graph neural network approach that probabilistically maps cells from a dissociated scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
 
 
 .. raw:: html
