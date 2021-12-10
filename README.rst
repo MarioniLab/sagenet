@@ -1,3 +1,5 @@
+|Docs|
+
 SageNet: single-cell locator
 =========================================================================
 .. raw:: html
@@ -211,3 +213,5 @@ Contributions
 -------------------------------
 This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between `MarioniLab@CRUK@EMBL-EBI <https://www.ebi.ac.uk/research-beta/marioni/>`__ and `RobinsonLab@UZH <https://robinsonlabuzh.github.io>`__.
 
+.. |Docs| image:: https://readthedocs.org/projects/sagenet/badge/?version=latest
+   :target: https://sagenet.readthedocs.io
