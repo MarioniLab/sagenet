@@ -1,4 +1,4 @@
-|PyPI| |PyPIDownloads| |Docs|
+|PyPI|  |Docs|
 
 SageNet: single-cell locator
 =========================================================================
@@ -220,5 +220,4 @@ This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between 
 .. |PyPI| image:: https://img.shields.io/pypi/v/sagenet.svg
    :target: https://pypi.org/project/sagenet
 
-.. |PyPIDownloads| image:: https://pepy.tech/badge/sagenet
-   :target: https://pepy.tech/project/sagenet
+
