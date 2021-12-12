@@ -18,9 +18,24 @@ SageNet: single-cell locator
 
 SageNet is implemented with `pytorch <https://pytorch.org/docs/stable/index.html>`_ and `pytorch-geometric <https://pytorch-geometric.readthedocs.io/en/latest/>`_ to be modular, fast, and scalable. Also, it uses ``anndata`` to be compatible with `scanpy <https://scanpy.readthedocs.io/en/stable/>`_ and `squidpy <https://squidpy.readthedocs.io/en/stable/>`_ for pre- and post-processing steps.
 
+
 Installation
--------------------------------
-You can get the latest development version of our toolkit from `Github <https://github.com/MarioniLab/sagenet>`_ using the following steps:
+============
+
+.. note::
+  **0.1.0**
+  
+The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. We recommend to use Miniconda.
+
+PyPI
+--------
+
+The easiest way to get SageNet is through pip using the following command::
+
+    sudo pip install -U sagenet
+
+Development
+---------------
 
 First, clone the repository using ``git``::
 
@@ -29,21 +44,7 @@ First, clone the repository using ``git``::
 Then, ``cd`` to the sagenet folder and run the install command::
 
     cd sagenet
-    python setup.py install #or pip install ` 
-
-
-The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. 
-
-
-.. raw:: html
-
-    <p align="center">
-        <a href="">
-            <img src="https://user-images.githubusercontent.com/55977725/144909791-7b451f94-bcf4-4f2d-9f7e-6c1a692e6ffd.gif"
-             width="400px" alt="activations logo">
-        </a>
-    </p>
-
+    python setup.py install #or pip install .
 
 
 Usage
