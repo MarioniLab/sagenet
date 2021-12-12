@@ -5,13 +5,14 @@ from setuptools import setup, find_packages
 long_description = Path('README.rst').read_text('utf-8')
 
 try:
-    from GNNProject import __author__, __email__
+    from sagenet import __author__, __email__
 except ImportError:  # Deps not yet installed
     __author__ = __maintainer__ ='Elyas Heidari'
     __email__ = ['eheidari@student.ethz.ch']
+    __version__ = '0.1.0'
 
 setup(name='sagenet',
-      __version__ = "0.1.0",
+      version = "0.1.0",
       description='Spatial reconstruction of dissociated single-cell data',
       long_description=long_description,
       long_description_content_type="text/markdown",
