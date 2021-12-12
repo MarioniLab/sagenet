@@ -17,7 +17,7 @@ The API reference contains detailed descriptions of the different end-user class
 sage
 ----
 
-.. autoclass:: sagenet.sage
+.. automodule:: sagenet.sage
     :members:
     :undoc-members:
     :show-inheritance:
@@ -26,7 +26,7 @@ sage
 classifier
 ----------
 
-.. autoclass:: sagenet.classifier
+.. automodule:: sagenet.classifier
     :members:
     :undoc-members:
     :show-inheritance:
