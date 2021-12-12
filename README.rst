@@ -8,6 +8,7 @@ SageNet: single-cell locator
 
 
 .. raw:: html
+
     <p align="center">
         <a href="">
             <img src="https://user-images.githubusercontent.com/55977725/145551267-2611c05f-0f7f-49e5-8859-0e6f5994bdb0.png"
@@ -35,6 +36,7 @@ The dependency ``torch-geometric`` should be installed separately, corresponding
 
 
 .. raw:: html
+
     <p align="center">
         <a href="">
             <img src="https://user-images.githubusercontent.com/55977725/144909791-7b451f94-bcf4-4f2d-9f7e-6c1a692e6ffd.gif"
@@ -123,6 +125,7 @@ Usage
 
 
 .. raw:: html
+
     <p align="center">
         <a href="">
             <img src="https://user-images.githubusercontent.com/55977725/145543540-23a51e03-c860-422f-b2e5-14da5f07669d.png"
