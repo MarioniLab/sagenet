@@ -22,9 +22,10 @@ SageNet is implemented with `pytorch <https://pytorch.org/docs/stable/index.html
 Installation
 ============
 
+
 .. note::
+
   **0.1.0**
-  
 The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. We recommend to use Miniconda.
 
 PyPI
