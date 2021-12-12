@@ -9,10 +9,10 @@ try:
 except ImportError:  # Deps not yet installed
     __author__ = __maintainer__ ='Elyas Heidari'
     __email__ = 'eheidari@student.ethz.ch'
-    __version__ = '0.1.0'
+    __version__ = '0.1.1'
 
 setup(name='sagenet',
-      version = "0.1.0",
+      version = "0.1.1",
       description='Spatial reconstruction of dissociated single-cell data',
       long_description=long_description,
       long_description_content_type="text/markdown",
