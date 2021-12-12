@@ -49,7 +49,7 @@ Then, ``cd`` to the sagenet folder and run the install command::
 
 
 Usage
--------------------------------
+============
 ::
 
 	import sagenet as sg
@@ -60,7 +60,9 @@ Usage
 	random.seed(10)
 	
 
-#. **Training phase:**
+Training phase:
+---------------
+
 
 **Input:**
 
@@ -138,7 +140,8 @@ Usage
 
 
 
-#. **Mapping phase:**
+Mapping phase
+---------------
 
 **Input:**
 
@@ -198,25 +201,25 @@ Usage
 
 
 Notebooks
--------------------------------
+============
 To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble on google colab:
 
 #. `Intro to SageNet <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 #. `Using multiple references <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 		
 Interactive examples
--------------------------------
+============
 * `Spatial mapping of the mouse gastrulation atlas <https://www.dropbox.com/s/krjgp19i62p7nfx/joint_mapping-2_interactive.html?dl=0>`_ 
 
 
 Support and contribute
--------------------------------
+============
 If you have a question or new architecture or a model that could be integrated into our pipeline, you can
 post an `issue <https://github.com/MarioniLab/sagenet/issues/new>`__ or reach us by `email <mailto:eheidari@student.ethz.ch>`_.
 
 
 Contributions
--------------------------------
+============
 This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between `MarioniLab@CRUK@EMBL-EBI <https://www.ebi.ac.uk/research-beta/marioni/>`__ and `RobinsonLab@UZH <https://robinsonlabuzh.github.io>`__.
 
 .. |Docs| image:: https://readthedocs.org/projects/sagenet/badge/?version=latest
