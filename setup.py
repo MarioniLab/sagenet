@@ -8,7 +8,7 @@ try:
     from sagenet import __author__, __email__
 except ImportError:  # Deps not yet installed
     __author__ = __maintainer__ ='Elyas Heidari'
-    __email__ = ['eheidari@student.ethz.ch']
+    __email__ = 'eheidari@student.ethz.ch'
     __version__ = '0.1.0'
 
 setup(name='sagenet',
