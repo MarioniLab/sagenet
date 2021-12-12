@@ -1,4 +1,6 @@
-SageNet: single-cell locator
+
+
+SageNet: Single-cell Spatial Locator
 =========================================================================
 .. raw:: html
 
@@ -16,9 +18,25 @@ SageNet: single-cell locator
 
 SageNet is implemented with `pytorch <https://pytorch.org/docs/stable/index.html>`_ and `pytorch-geometric <https://pytorch-geometric.readthedocs.io/en/latest/>`_ to be modular, fast, and scalable. Also, it uses ``anndata`` to be compatible with `scanpy <https://scanpy.readthedocs.io/en/stable/>`_ and `squidpy <https://squidpy.readthedocs.io/en/stable/>`_ for pre- and post-processing steps.
 
+
 Installation
--------------------------------
-You can get the latest development version of our toolkit from `Github <https://github.com/MarioniLab/sagenet>`_ using the following steps:
+============
+
+
+.. note::
+
+  **0.1.0**
+The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. We recommend to use Miniconda.
+
+PyPI
+--------
+
+The easiest way to get SageNet is through pip using the following command::
+
+    pip install sagenet
+
+Development
+---------------
 
 First, clone the repository using ``git``::
 
@@ -27,25 +45,11 @@ First, clone the repository using ``git``::
 Then, ``cd`` to the sagenet folder and run the install command::
 
     cd sagenet
-    python setup.py install #or pip install ` 
-
-
-The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. 
-
-
-.. raw:: html
-
-    <p align="center">
-        <a href="">
-            <img src="https://user-images.githubusercontent.com/55977725/144909791-7b451f94-bcf4-4f2d-9f7e-6c1a692e6ffd.gif"
-             width="400px" alt="activations logo">
-        </a>
-    </p>
-
+    python setup.py install #or pip install .
 
 
 Usage
--------------------------------
+============
 ::
 
 	import sagenet as sg
@@ -56,7 +60,9 @@ Usage
 	random.seed(10)
 	
 
-#. **Training phase:**
+Training phase:
+---------------
+
 
 **Input:**
 
@@ -134,7 +140,8 @@ Usage
 
 
 
-#. **Mapping phase:**
+Mapping phase
+---------------
 
 **Input:**
 
@@ -155,15 +162,19 @@ Usage
 - The reconstructed cell-cell spatial distance matrix 
 ::
 
+
 	adata_q.obsm['dist_map']
 
 
 - A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
 ::
 
+
 	adata_q.obs
-	
+
+
 ::
+
 
 	import anndata
 	dist_adata = anndata.AnnData(adata_q.obsm['dist_map'], obs = adata_q.obs)
@@ -190,28 +201,31 @@ Usage
 
 
 Notebooks
--------------------------------
+============
 To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble on google colab:
 
 #. `Intro to SageNet <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 #. `Using multiple references <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 		
 Interactive examples
--------------------------------
-See `this <https://www.dropbox.com/s/krjgp19i62p7nfx/joint_mapping-2_interactive.html?dl=0>`_ 
+============
+* `Spatial mapping of the mouse gastrulation atlas <https://www.dropbox.com/s/krjgp19i62p7nfx/joint_mapping-2_interactive.html?dl=0>`_ 
 
 
 Support and contribute
--------------------------------
+============
 If you have a question or new architecture or a model that could be integrated into our pipeline, you can
 post an `issue <https://github.com/MarioniLab/sagenet/issues/new>`__ or reach us by `email <mailto:eheidari@student.ethz.ch>`_.
 
 
 Contributions
--------------------------------
+============
 This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between `MarioniLab@CRUK@EMBL-EBI <https://www.ebi.ac.uk/research-beta/marioni/>`__ and `RobinsonLab@UZH <https://robinsonlabuzh.github.io>`__.
 
-
-
+.. |Docs| image:: https://readthedocs.org/projects/sagenet/badge/?version=latest
+   :target: https://sagenet.readthedocs.io
+   
+.. |PyPI| image:: https://img.shields.io/pypi/v/sagenet.svg
+   :target: https://pypi.org/project/sagenet
 
 
