@@ -4,7 +4,9 @@ https://data.pyg.org/whl/torch-1.9.0%2Bcpu/torch_sparse-0.6.10-cp38-cp38-linux_x
 sphinx==4.0.2
 sphinx_rtd_theme==0.5.2
 nbsphinx>=0.8.1,<0.8.7
-anndata
+anndata>=0.7.4
+scanpy>=1.8.0
+squidpy>=1.1.0
 networkx
 python-louvain
 python-igraph
@@ -13,7 +15,7 @@ argparse
 numpy
 scikit-learn
 scipy
-squidpy
 captum
 tensorboard
 numpydoc
+
