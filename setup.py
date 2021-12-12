@@ -13,9 +13,9 @@ except ImportError:  # Deps not yet installed
 
 setup(name='sagenet',
       version = "0.1.0",
-#       description='Spatial reconstruction of dissociated single-cell data',
-      description=Path("README.rst").read_text("utf-8").splitlines()[2],
-      long_description=Path("README.rst").read_text("utf-8"),
+      description='Spatial reconstruction of dissociated single-cell data',
+      long_description=long_description,
+      long_description_content_type="text/markdown",
       url='https://github.com/MarioniLab/sagenet',
       author=__author__,
       author_email=__email__,
