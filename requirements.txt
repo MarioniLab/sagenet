@@ -1,5 +1,12 @@
-torch
-anndata
+https://download.pytorch.org/whl/cpu/torch-1.9.0%2Bcpu-cp38-cp38-linux_x86_64.whl
+https://data.pyg.org/whl/torch-1.9.0%2Bcpu/torch_scatter-2.0.7-cp38-cp38-linux_x86_64.whl
+https://data.pyg.org/whl/torch-1.9.0%2Bcpu/torch_sparse-0.6.10-cp38-cp38-linux_x86_64.whl
+sphinx==4.0.2
+sphinx_rtd_theme==0.5.2
+nbsphinx>=0.8.1,<0.8.7
+anndata>=0.7.4
+scanpy>=1.8.0
+squidpy>=1.1.0
 networkx
 python-louvain
 python-igraph
@@ -8,8 +15,7 @@ argparse
 numpy
 scikit-learn
 scipy
-squidpy
 captum
 tensorboard
-nbsphinx
 numpydoc
+
