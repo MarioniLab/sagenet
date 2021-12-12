@@ -22,12 +22,12 @@ setup(name='sagenet',
       platforms=["Linux", "MacOSX"],
       packages=find_packages(),
       zip_safe=False,
-    #   download_url="https://pypi.org/project/squidpy/",
-    # project_urls={
-    #     "Documentation": "https://squidpy.readthedocs.io/en/stable",
-    #     "Source Code": "https://github.com/theislab/squidpy",
-    # },
-    install_requires=[l.strip() for l in Path("requirements.txt").read_text("utf-8").splitlines()],
+      download_url="https://github.com/MarioniLab/sagenet/archive/refs/tags/internal.tar.gz",
+      project_urls={
+        "Documentation": "https://sagenet.readthedocs.io/en/latest",
+        "Source Code": "https://github.com/MarioniLab/sagenet",
+      },
+      install_requires=[l.strip() for l in Path("requirements.txt").read_text("utf-8").splitlines()],
       classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Science/Research",
