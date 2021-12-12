@@ -204,7 +204,7 @@ To see some examples of our pipeline's capability, look at the `notebooks <https
 		
 Interactive examples
 -------------------------------
-* `Spatial mapping of mouse gastrulation atlas <https://www.dropbox.com/s/krjgp19i62p7nfx/joint_mapping-2_interactive.html?dl=0>`_ 
+* `Spatial mapping of the mouse gastrulation atlas <https://www.dropbox.com/s/krjgp19i62p7nfx/joint_mapping-2_interactive.html?dl=0>`_ 
 
 
 Support and contribute
