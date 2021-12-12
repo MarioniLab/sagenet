@@ -33,7 +33,7 @@ PyPI
 
 The easiest way to get SageNet is through pip using the following command::
 
-    sudo pip install -U sagenet
+    pip install sagenet
 
 Development
 ---------------
