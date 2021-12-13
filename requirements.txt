@@ -2,7 +2,6 @@ torch~=1.10
 sphinx==4.0.2
 sphinx_rtd_theme==0.5.2
 nbsphinx>=0.8.1,<0.8.7
-anndata>=0.7.4
 scanpy>=1.8.0
 squidpy>=1.1.0
 networkx>=2.5
