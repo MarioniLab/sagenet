@@ -10,8 +10,9 @@ from captum.attr import IntegratedGradients
 import numpy as np
 
 class Classifier():
-    """
-        A Neural Network Classifier. A number of Graph Neural Networks (GNN) and an MLP are implemented.
+    
+    """A Neural Network Classifier. A number of Graph Neural Networks (GNN) and an MLP are implemented.
+        
         Parameters
         ----------
         n_features : int
@@ -117,8 +118,8 @@ class Classifier():
             self.writer = SummaryWriter(log_dir=log_dir,flush_secs=1)
  
     def fit(self,data_loader,epochs,test_dataloader=None,verbose=False):
-        """
-            fits the classifier to the input data.
+        """fits the classifier to the input data.
+        
             Parameters
             ----------
             data_loader : torch-geometric dataloader
@@ -169,8 +170,8 @@ class Classifier():
         
 
     def eval(self,data_loader,verbose=False):
-        """
-            evaluates the model based on predictions
+        """evaluates the model based on predictions
+        
             Parameters
             ----------
             test_dataloader : torch-geometric dataloader, default=None
