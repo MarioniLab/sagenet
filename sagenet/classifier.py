@@ -11,7 +11,8 @@ import numpy as np
 
 class Classifier():
     
-    """A Neural Network Classifier. A number of Graph Neural Networks (GNN) and an MLP are implemented.
+    """
+        A Neural Network Classifier. A number of Graph Neural Networks (GNN) and an MLP are implemented.
         
         Parameters
         ----------
@@ -118,7 +119,8 @@ class Classifier():
             self.writer = SummaryWriter(log_dir=log_dir,flush_secs=1)
  
     def fit(self,data_loader,epochs,test_dataloader=None,verbose=False):
-        """fits the classifier to the input data.
+        """
+            fits the classifier to the input data.
         
             Parameters
             ----------
@@ -170,7 +172,8 @@ class Classifier():
         
 
     def eval(self,data_loader,verbose=False):
-        """evaluates the model based on predictions
+        """
+            evaluates the model based on predictions
         
             Parameters
             ----------
@@ -180,11 +183,16 @@ class Classifier():
                 whether to print out loss during training.
             Returns
             ----------
-            accuracy : accuracy
-            conf_mat : confusion matrix
-            precision : weighted precision score
-            recall : weighted recall score
-            f1_score : weighted f1 score
+            accuracy : 
+                accuracy
+            conf_mat : 
+                confusion matrix
+            precision : 
+                weighted precision score
+            recall : 
+                weighted recall score
+            f1_score : 
+                weighted f1 score
         """  
         self.net.eval()
         correct = 0
@@ -209,8 +217,10 @@ class Classifier():
         return accuracy, conf_mat, precision, recall, f1_score
 
     def interpret(self, data_loader, n_features, n_classes):
-        """interprets a trained model, by giving importance scores assigned to each feature regarding each class
-            it uses the `IntegratedGradients` method from the package `captum` to computed class-wise feature importances and then computes entropy values to get a global importance measure.
+        """
+            interprets a trained model, by giving importance scores assigned to each feature regarding each class
+            it uses the `IntegratedGradients` method from the package `captum` to computed class-wise feature importances 
+            and then computes entropy values to get a global importance measure.
             
             Parameters
             ----------
@@ -224,6 +234,7 @@ class Classifier():
             Returns
             ----------
             ent : numpy ndarray, shape (n_features)
+            
         """  
         batch = next(iter(data_loader))
         e = batch.edge_index.to(self.device).long()
