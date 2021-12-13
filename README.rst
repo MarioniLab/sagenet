@@ -118,7 +118,7 @@ Training phase:
 	sg_obj.save_model_as_folder('models/seqFISH_ref')	
 
 
-- A concensus scoring of spatially informativity of each gene
+- A consensus scoring of spatially informativity of each gene
 
 ::
 
@@ -202,7 +202,7 @@ Mapping phase
 
 Notebooks
 ============
-To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also avaialble on google colab:
+To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also available on google colab:
 
 #. `Intro to SageNet <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 #. `Using multiple references <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
