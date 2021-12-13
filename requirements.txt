@@ -4,17 +4,10 @@ nbsphinx>=0.8.1,<0.8.7
 anndata>=0.7.4
 scanpy>=1.8.0
 squidpy>=1.1.0
-networkx
-python-louvain
-python-igraph
-umap-learn
-argparse
-numpy
-scikit-learn
-scipy
-captum
-tensorboard
-numpydoc
+networkx>=2.5
+captum>=0.4
+tensorboard>=2.6
+numpydoc>=1.1
 
 
 
