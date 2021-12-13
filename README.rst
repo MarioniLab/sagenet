@@ -1,4 +1,4 @@
-|PyPI|  |Docs|
+|PyPI| |Docs| |travis|
 
 SageNet: Spatial reconstruction of dissociated single-cell datasets using graph neural networks
 =========================================================================
@@ -228,4 +228,5 @@ This work is led by Elyas Heidari and Shila Ghazanfar as a joint effort between 
 .. |PyPI| image:: https://img.shields.io/pypi/v/sagenet.svg
    :target: https://pypi.org/project/sagenet
 
-
+.. |travis| image:: https://travis-ci.com/MarioniLab/sagenet.svg?branch=main
+    :target: https://travis-ci.com/MarioniLab/sagenet
