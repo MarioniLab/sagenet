@@ -166,7 +166,7 @@ Mapping phase
 	adata_q.obsm['dist_map']
 
 
-- A concensus scoring of mapability (uncertainity of mapping) of each cell to the references
+- A consensus scoring of mappability (uncertainity of mapping) of each cell to the references
 ::
 
 
