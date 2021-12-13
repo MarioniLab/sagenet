@@ -5,7 +5,7 @@ _MGA = AMetadata(
     name="MGA",
     doc_header="",
     # shape=(270876, 43),
-    url="https://figshare.com/ndownloader/files/31765205",
+    url="https://figshare.com/ndownloader/files/31766651",
 )
 
 _seqFISH1 = AMetadata(
