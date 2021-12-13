@@ -1,7 +1,4 @@
 torch~=1.10
-https://data.pyg.org/whl/torch-1.10.0%2Bcu113/torch_scatter-2.0.9-cp38-cp38-win_amd64.whl
-https://data.pyg.org/whl/torch-1.10.0%2Bcu113/torch_sparse-0.6.12-cp38-cp38-win_amd64.whl
-torch-geometric
 sphinx==4.0.2
 sphinx_rtd_theme==0.5.2
 nbsphinx>=0.8.1,<0.8.7
