@@ -219,7 +219,7 @@ def save_adata(adata, attr, key, data):
             The annotated data matrix of shape `n_obs × n_vars`. Rows correspond to cells and columns to genes.
         attr : str
             must be an attribute of `adata`, e.g., `obs`, `var`, etc.
-    `   key : str
+        key : str
             must be a key in the attr
         data : non-specific
             the data to be updated/placed
