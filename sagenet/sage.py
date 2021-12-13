@@ -118,6 +118,7 @@ class sage():
         for tag in self.models.keys():
             self.models[tag].eval()
             i = 0
+            adata_q.obs['class_'] = 0
             data_loader = get_dataloader(
                 graph       = self.adjs[tag], 
                 X           = adata_q.X, y = adata_q.obs['class_'].values.astype('long'), #TODO: fix this
@@ -127,7 +128,7 @@ class sage():
             )
             with torch.no_grad():
                 for batch in data_loader:
-                    x, edge_index, label = batch.x.to(self.device), batch.edge_index.to(self.device), batch.y.to('cpu')
+                    x, edge_index = batch.x.to(self.device), batch.edge_index.to(self.device)
                     outputs = self.models[tag](x, edge_index)
                     predicted = outputs.data.to('cpu').detach().numpy()
                     i += 1
