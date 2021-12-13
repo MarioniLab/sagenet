@@ -7,7 +7,7 @@ The API reference contains detailed descriptions of the different end-user class
 .. note::
 
     This API reference only contains end-user documentation.
-    If you are looking to hack away at scArches' internals, you will find more detailed comments in the source code.
+    If you are looking to hack away at sagenet' internals, you will find more detailed comments in the source code.
     
 
 * `sage`_
