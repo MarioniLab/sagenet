@@ -31,16 +31,15 @@ class Classifier():
         dropout_FC : float, default=0
             dropout rate for FC hidden layers.
         classifier : str, default='MLP'
-            Can be one of the following:
-                - 'MLP' : multilayer perceptron
-                - 'GraphSAGE': GraphSAGE Network 
-                - 'Chebnet': Chebyshev spectral Graph Convolutional Network
-                - 'GATConv': Graph Attentional Neural Network
-                - 'GENConv': GENeralized Graph Convolution Network
-                - 'GINConv': Graph Isoform Network
-                - 'GraphConv': Graph Convolutional Neural Network
-                - 'MFConv': Convolutional Networks on Graphs for Learning Molecular Fingerprints
-                - 'TransformerConv': Graph Transformer Neural Network
+            - 'MLP' --> multilayer perceptron
+            - 'GraphSAGE'--> GraphSAGE Network 
+            - 'Chebnet'--> Chebyshev spectral Graph Convolutional Network
+            - 'GATConv'--> Graph Attentional Neural Network
+            - 'GENConv'--> GENeralized Graph Convolution Network
+            - 'GINConv'--> Graph Isoform Network
+            - 'GraphConv'--> Graph Convolutional Neural Network
+            - 'MFConv'--> Convolutional Networks on Graphs for Learning Molecular Fingerprints
+            - 'TransformerConv'--> Graph Transformer Neural Network
         lr : float, default=0.001
             base learning rate for the SGD optimization algorithm.
         momentum : float, default=0.9
@@ -183,15 +182,15 @@ class Classifier():
                 whether to print out loss during training.
             Returns
             ----------
-            accuracy : 
+            accuracy : float
                 accuracy
-            conf_mat : 
+            conf_mat : ndarray
                 confusion matrix
-            precision : 
+            precision : fload
                 weighted precision score
-            recall : 
+            recall : float
                 weighted recall score
-            f1_score : 
+            f1_score : float
                 weighted f1 score
         """  
         self.net.eval()
