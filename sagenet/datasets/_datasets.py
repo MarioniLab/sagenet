@@ -32,16 +32,16 @@ _MGA_seqFISH3 = AMetadata(
 
 _DHH_visium = AMetadata(
     name="DHH_visium",
-    doc_header="https://figshare.com/ndownloader/files/31796207",
+    doc_header="",
     # shape=(270876, 43),
-    url="https://figshare.com/ndownloader/files/31716089",
+    url="https://figshare.com/ndownloader/files/31796207",
 )
 
 _DHH_scRNAseq = AMetadata(
     name="DHH_scRNAseq",
-    doc_header="https://figshare.com/ndownloader/files/31796219",
+    doc_header="",
     # shape=(270876, 43),
-    url="https://figshare.com/ndownloader/files/31716089",
+    url="https://figshare.com/ndownloader/files/31796219",
 )
 
 
