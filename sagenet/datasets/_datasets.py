@@ -2,21 +2,21 @@ from copy import copy
 from squidpy.datasets._utils import AMetadata
 
 _MGA_scRNAseq = AMetadata(
-    name="MGA",
+    name="MGA_scRNAseq",
     doc_header="",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31767704",
 )
 
 _MGA_seqFISH1 = AMetadata(
-    name="seqFISH1",
+    name="MGA_seqFISH1",
     doc_header="",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31716029",
 )
 
 _MGA_seqFISH2 = AMetadata(
-    name="seqFISH2",
+    name="MGA_seqFISH2",
     doc_header="",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31716041",
@@ -24,21 +24,21 @@ _MGA_seqFISH2 = AMetadata(
 
 
 _MGA_seqFISH3 = AMetadata(
-    name="seqFISH3",
+    name="MGA_seqFISH3",
     doc_header="",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31716089",
 )
 
 _DHH_visium = AMetadata(
-    name="dhh_visium",
+    name="DHH_visium",
     doc_header="https://figshare.com/ndownloader/files/31796207",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31716089",
 )
 
 _DHH_scRNAseq = AMetadata(
-    name="scRNAseq2",
+    name="DHH_scRNAseq",
     doc_header="https://figshare.com/ndownloader/files/31796219",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31716089",
