@@ -30,8 +30,8 @@ _MGA_seqFISH3 = AMetadata(
     url="https://figshare.com/ndownloader/files/31716089",
 )
 
-_DHH_visium = AMetadata(
-    name="DHH_visium",
+_DHH_visium_ = AMetadata(
+    name="DHH_visium_",
     doc_header="",
     # shape=(270876, 43),
     url="https://figshare.com/ndownloader/files/31796207",
@@ -57,7 +57,7 @@ __all__ = [  # noqa: F822
     "MGA_seqFISH1",
     "MGA_seqFISH2",
     "MGA_seqFISH3",
-    'DHH_visium',
+    'DHH_visium_',
     'DHH_scRNAseq'
     
 ]
