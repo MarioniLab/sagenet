@@ -206,6 +206,6 @@ class sage():
             model_path = os.path.join(dir, tag) + '.pickle'
             adj_path = os.path.join(dir, tag) + '.h5ad'
             self.models[tag] = torch.load(model_path)
-            self.adjs[tag] = sc.read_h5ad(adj_path).X
+            self.adjs[tag] = anndata.read_h5ad(adj_path).X
 
 
