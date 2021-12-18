@@ -23,7 +23,7 @@ setup(name='sagenet',
       platforms=["Linux", "MacOSX"],
       packages=find_packages(),
       zip_safe=False,
-      download_url="https://github.com/MarioniLab/sagenet/archive/refs/tags/SageNet_v0.1.0.1.tar.gz",
+#       download_url="https://github.com/MarioniLab/sagenet/archive/refs/tags/SageNet_v0.1.0.1.tar.gz",
       project_urls={
         "Documentation": "https://sagenet.readthedocs.io/en/latest",
         "Source Code": "https://github.com/MarioniLab/sagenet",
