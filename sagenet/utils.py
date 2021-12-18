@@ -7,7 +7,6 @@ from sklearn.preprocessing import StandardScaler
 import torch
 import torch_geometric.data as geo_dt 
 from sklearn.utils.extmath import fast_logdet
-import scanpy as sc
 import numpy as np
 from scipy import sparse
 
