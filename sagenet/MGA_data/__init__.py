@@ -1,1 +1,1 @@
-from sagenet.datasets._datasets import * 
+from sagenet.MGA_data._MGA_data import * 
