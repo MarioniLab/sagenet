@@ -1,4 +1,4 @@
-|PyPI| |Docs| |travis|
+|PyPI| |Docs| 
 
 SageNet: Spatial reconstruction of dissociated single-cell datasets using graph neural networks
 =========================================================================
