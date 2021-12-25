@@ -90,7 +90,7 @@ class sage():
 
             clf.fit(data_loader, epochs = epochs, test_dataloader=None,verbose=verbose)
             ent = clf.interpret(data_loader, n_features=adata.shape[1], n_classes=(np.max(adata.obs[comm].values.astype('long'))+1))
-            ents  += ent
+            ents  += ent / np.linalg.norm(ent)
             self.models['_'.join([tag, comm])] = clf.net
             self.adjs['_'.join([tag, comm])] = adata.varm['adj'].toarray()
         save_adata(adata, attr='var', key='_'.join([tag, 'entropy']), data=ents)
