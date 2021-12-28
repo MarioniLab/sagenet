@@ -251,7 +251,9 @@ class Classifier():
             attributions = attributions.reshape(n_features, len(target))
             importances[:, target.to('cpu').numpy()] += attributions
         importances = np.e**importances
-        importances = importances / importances.max(axis=0)
-        imp = (importances.T / np.sum(importances, axis = 1)).T
-        ent = (-imp * np.log2(imp)).sum(axis = 1) / np.log2(n_classes)
+#         importances = importances / importances.max(axis=0)
+#         imp = (importances.T / np.sum(importances, axis = 1)).T
+#         ent = (-imp * np.log2(imp)).sum(axis = 1) / np.log2(n_classes)
+        idx = (-np.absolute(importances)).argsort(axis=0) 
+        ent = np.mean(idx, axis=1)
         return ent
