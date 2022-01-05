@@ -249,6 +249,7 @@ class Classifier():
             attributions = ig.attribute(input, target=target)
             attributions = attributions.to('cpu').detach().numpy()
             attributions = attributions.reshape(n_features, len(target))
+            attributions /= np.linalg.norm(attributions)
             importances[:, target.to('cpu').numpy()] += attributions
 #         importances = np.e**importances
 #         importances = importances / importances.max(axis=0)
