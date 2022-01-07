@@ -61,7 +61,7 @@ class sage():
             Trains the models and adds them to `.models` dictionery of the `sagenet` object.
             Also adds a new key `{tag}_entropy` to `.var` from `adata` which contains  the entropy values as the importance score corresponding to each gene.
         """    
-        ind = np.where(np.sum(adata_r.varm['adj'], axis=1))[0]
+        ind = np.where(np.sum(adata.varm['adj'], axis=1))[0]
         ents = np.zeros(ind.shape[0])
         self.num_refs += 1
 
