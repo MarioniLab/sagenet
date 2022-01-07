@@ -61,7 +61,8 @@ class sage():
             Trains the models and adds them to `.models` dictionery of the `sagenet` object.
             Also adds a new key `{tag}_entropy` to `.var` from `adata` which contains  the entropy values as the importance score corresponding to each gene.
         """    
-        ents = np.zeros(adata.shape[1])
+        ind = np.where(np.sum(adata_r.varm['adj'], axis=1))[0]
+        ents = np.zeros(ind.shape[0])
         self.num_refs += 1
 
         if tag is None:
@@ -89,8 +90,10 @@ class sage():
             ) 
 
             clf.fit(data_loader, epochs = epochs, test_dataloader=None,verbose=verbose)
-            ent = clf.interpret(data_loader, n_features=adata.shape[1], n_classes=(np.max(adata.obs[comm].values.astype('long'))+1))
-            ents  += ent 
+            imp = clf.interpret(data_loader, n_features=adata.shape[1], n_classes=(np.max(adata.obs[comm].values.astype('long'))+1))
+            idx = (-importances[ind,:]).argsort(axis=0) 
+            imp = np.min(idx, axis=1)
+            ents  += imp
             self.models['_'.join([tag, comm])] = clf.net
             self.adjs['_'.join([tag, comm])] = adata.varm['adj'].toarray()
         save_adata(adata, attr='var', key='_'.join([tag, 'entropy']), data=ents)
