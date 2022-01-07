@@ -96,7 +96,8 @@ class sage():
             ents  += imp
             self.models['_'.join([tag, comm])] = clf.net
             self.adjs['_'.join([tag, comm])] = adata.varm['adj'].toarray()
-        save_adata(adata, attr='var', key='_'.join([tag, 'entropy']), data=ents)
+#         save_adata(adata, attr='var', key='_'.join([tag, 'entropy']), data=ents)
+        return ents
 
 
     def map_query(self, adata_q):
