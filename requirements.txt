@@ -2,6 +2,7 @@ torch~=1.10
 captum>=0.4
 tensorboard>=2.6
 numpydoc>=1.1
+sqidpy~=1.1.2
 
 
 
