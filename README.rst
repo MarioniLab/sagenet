@@ -70,7 +70,7 @@ Training phase:
 
 ::
 
-	adata_r = sg.datasets.seqFISH1()
+	adata_r = sg.MGA_data.seqFISH1()
 
 
 - gene-gene interaction network
@@ -148,7 +148,7 @@ Mapping phase
 - Expression matrix associated with the (dissociated) query dataset (an ``anndata`` object)
 ::
 	
-	adata_q = sg.datasets.MGA()
+	adata_q = sg.MGA_data.scRNAseq()
 
 
 **Mapping:**
