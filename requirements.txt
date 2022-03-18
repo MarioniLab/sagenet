@@ -2,7 +2,7 @@ torch>=1.8.0
 captum>=0.4
 tensorboard>=2.6
 numpydoc>=1.1
-squidpy~=1.1.2
+squidpy
 
 
 
