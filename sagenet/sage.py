@@ -94,7 +94,7 @@ class sage():
             imp = clf.interpret(data_loader, n_features=adata.shape[1], n_classes=(np.max(adata.obs[comm].values.astype('long'))+1))
 #             idx = (-abs(imp)).argsort(axis=0) 
 #             imp += imp
-            ents = np.sum(imp, axis=1)
+            ents += np.max(imp, axis=1)
 #             imp = np.min(idx, axis=1)
 #             ents = np.minimum(ents, imp)
             self.models['_'.join([tag, comm])] = clf.net
