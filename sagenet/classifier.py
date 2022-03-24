@@ -8,6 +8,7 @@ from sagenet.model import *
 from captum import *
 from captum.attr import IntegratedGradients
 import numpy as np
+from sklearn.preprocessing import normalize
 
 class Classifier():
     
@@ -249,7 +250,8 @@ class Classifier():
             attributions = ig.attribute(input, target=target)
             attributions = attributions.to('cpu').detach().numpy()
             attributions = attributions.reshape(n_features, len(target))
-            attributions /= np.linalg.norm(attributions)
+            attributions = normalize(attributions, axis=0, norm='l2')
+#             attributions /= np.linalg.norm(attributions)
             importances[:, target.to('cpu').numpy()] += attributions
 #         importances = np.e**importances
 #         importances = importances / importances.max(axis=0)
