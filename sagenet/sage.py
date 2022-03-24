@@ -62,7 +62,7 @@ class sage():
             Also adds a new key `{tag}_entropy` to `.var` from `adata` which contains  the entropy values as the importance score corresponding to each gene.
         """    
         ind = np.where(np.sum(adata.varm['adj'], axis=1))[0]
-        ents = np.zeros(adata.var.shape[0])
+        ents = np.ones(adata.var.shape[0]) * np.inf
         self.num_refs += 1
 
         if tag is None:
