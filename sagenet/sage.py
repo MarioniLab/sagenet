@@ -93,7 +93,7 @@ class sage():
             imp = clf.interpret(data_loader, n_features=adata.shape[1], n_classes=(np.max(adata.obs[comm].values.astype('long'))+1))
             idx = (-abs(imp)).argsort(axis=0) 
             imp = np.min(idx, axis=0)
-            ents = np.min(ents, imp)
+            ents = .minimum(ents, imp)
             self.models['_'.join([tag, comm])] = clf.net
             self.adjs['_'.join([tag, comm])] = adata.varm['adj'].toarray()
         save_adata(adata, attr='var', key='_'.join([tag, 'importance']), data=ents)
