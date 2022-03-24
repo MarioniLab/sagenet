@@ -62,8 +62,8 @@ class sage():
             Also adds a new key `{tag}_entropy` to `.var` from `adata` which contains  the entropy values as the importance score corresponding to each gene.
         """    
         ind = np.where(np.sum(adata.varm['adj'], axis=1) == 0)[0]
-#         ents = np.ones(adata.var.shape[0]) * 1000000
-        ents = np.zeros(adata.var.shape[0])
+        ents = np.ones(adata.var.shape[0]) * 1000000
+#         ents = np.zeros(adata.var.shape[0])
         self.num_refs += 1
 
         if tag is None:
@@ -92,10 +92,11 @@ class sage():
 
             clf.fit(data_loader, epochs = epochs, test_dataloader=None,verbose=verbose)
             imp = clf.interpret(data_loader, n_features=adata.shape[1], n_classes=(np.max(adata.obs[comm].values.astype('long'))+1))
-#             idx = (-abs(imp)).argsort(axis=0) 
+            idx = (-abs(imp)).argsort(axis=0) 
+            imp = np.min(idx, axis=1) 
 #             imp += imp
-            np.put(imp, ind, 0)
-            ents += np.sum(abs(imp), axis=1)
+            np.put(imp, ind, 1000000)
+            ents = np.minimum(ents, imp)
             
 #             imp = np.min(idx, axis=1)
 #             ents = np.minimum(ents, imp)
