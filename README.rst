@@ -37,17 +37,11 @@ Installation
 
 .. note::
 
-  **0.1.0**
+  **v1.0**
 The dependency ``torch-geometric`` should be installed separately, corresponding the system specefities, look at `this link <https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html>`_ for instructions. We recommend to use Miniconda.
 
-PyPI
---------
 
-The easiest way to get SageNet is through pip using the following command::
-
-    pip install sagenet
-
-Development
+GitHub (currently recomended
 ---------------
 
 First, clone the repository using ``git``::
@@ -58,6 +52,15 @@ Then, ``cd`` to the sagenet folder and run the install command::
 
     cd sagenet
     python setup.py install #or pip install .
+    
+PyPI
+--------
+
+The easiest way to get SageNet is through pip using the following command::
+
+    pip install sagenet
+
+
 
 
 Usage
@@ -131,14 +134,15 @@ Training phase:
 	sg_obj.save_model_as_folder('models/seqFISH_ref')	
 
 
-- A consensus scoring of spatially informativity of each gene
+- A set of Spatially Informative Genes
 
 ::
 
 
-	ind = np.argsort(-adata_r.var['seqFISH_ref_entropy'])[0:12]
+	ind  = np.where(adata_r.var['ST_all_importance'] <= 5)[0]
+	SIGs = list(adata_r.var_names[ind])
 	with rc_context({'figure.figsize': (4, 4)}):
-		sc.pl.spatial(adata_r, color=list(adata_r.var_names[ind]), ncols=4, spot_size=0.03, legend_loc=None)
+		sc.pl.spatial(adata_r, color=SIGs, ncols=4, spot_size=0.03, legend_loc=None)
 
 
 .. raw:: html
@@ -217,8 +221,8 @@ Notebooks
 ============
 To see some examples of our pipeline's capability, look at the `notebooks <https://github.com/MarioniLab/sagenet/notebooks>`_ directory. The notebooks are also available on google colab:
 
-#. `Intro to SageNet <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
-#. `Using multiple references <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
+#. `Spatial reconstruciton of the developing human heart <https://colab.research.google.com/drive/1x8mXIaUxx9JdolbBIKU_4zqPvM3Wz5Zp?usp=sharing>`_
+#. `Spatial reconstruciton of the mouse embryo <https://colab.research.google.com/drive/1H4gVFfxzZgilk6nbUhzFlrFsa1vEHNTl?usp=sharing>`_
 		
 Interactive examples
 ============
