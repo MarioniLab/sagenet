@@ -11,7 +11,7 @@ SageNet: Spatial reconstruction of dissociated single-cell datasets using graph 
     <p align="center">
         <a href="">
             <img src="https://user-images.githubusercontent.com/55977725/145551267-2611c05f-0f7f-49e5-8859-0e6f5994bdb0.png"
-             width="700px" alt="sagenet logo">
+             width="300px" alt="sagenet logo">
         </a>
     </p>
 
