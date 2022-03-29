@@ -3,7 +3,5 @@ captum>=0.4
 tensorboard>=2.6
 numpydoc>=1.1
 anndata
-pyyaml==5.4.0
-squidpy
 
 
