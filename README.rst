@@ -6,7 +6,6 @@ SageNet: Spatial reconstruction of dissociated single-cell datasets using graph 
 
 **SageNet** is a robust and generalizable graph neural network approach that probabilistically maps  dissociated single cells from an scRNAseq dataset to their hypothetical tissue of origin using one or more reference datasets aquired by spatially resolved transcriptomics techniques. It is compatible with both high-plex imaging (e.g., seqFISH, MERFISH, etc.) and spatial barcoding (e.g., 10X visium, Slide-seq, etc.) datasets as the spatial reference. 
 
-
 .. raw:: html
 
     <p align="center">
@@ -50,6 +49,17 @@ Then, ``cd`` to the sagenet folder and run the install command::
 
 Usage
 ============
+
+.. raw:: html
+
+    <p align="center">
+        <a href="">
+            <img src="https://user-images.githubusercontent.com/55977725/160540580-7a477850-004a-4909-91ac-c9ffbc8d9929.jpg"
+             width="700px" alt="sagenet workflow">
+        </a>
+    </p>
+
+
 ::
 
 	import sagenet as sg
