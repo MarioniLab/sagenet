@@ -14,8 +14,21 @@ SageNet: Spatial reconstruction of dissociated single-cell datasets using graph 
              width="300px" alt="sagenet logo">
         </a>
     </p>
+    
+
 
 SageNet is implemented with `pytorch <https://pytorch.org/docs/stable/index.html>`_ and `pytorch-geometric <https://pytorch-geometric.readthedocs.io/en/latest/>`_ to be modular, fast, and scalable. Also, it uses ``anndata`` to be compatible with `scanpy <https://scanpy.readthedocs.io/en/stable/>`_ and `squidpy <https://squidpy.readthedocs.io/en/stable/>`_ for pre- and post-processing steps.
+
+
+.. raw:: html
+
+    <p align="center">
+        <a href="">
+            <img src="https://user-images.githubusercontent.com/55977725/160540580-7a477850-004a-4909-91ac-c9ffbc8d9929.jpg"
+             width="700px" alt="sagenet workflow">
+        </a>
+    </p>
+
 
 
 Installation
@@ -49,16 +62,6 @@ Then, ``cd`` to the sagenet folder and run the install command::
 
 Usage
 ============
-
-.. raw:: html
-
-    <p align="center">
-        <a href="">
-            <img src="https://user-images.githubusercontent.com/55977725/160540580-7a477850-004a-4909-91ac-c9ffbc8d9929.jpg"
-             width="700px" alt="sagenet workflow">
-        </a>
-    </p>
-
 
 ::
 
