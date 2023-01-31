@@ -106,7 +106,7 @@ class sage():
 #         return ents
 
 
-    def map_query(self, adata_q):
+    def map_query(self, adata_q, save_pred=True, save_ent=True, save_prob=False, save_dist=False):
         """Maps a query dataset to space using the trained models on the spatial reference(s).
 
             Parameters
@@ -146,21 +146,27 @@ class sage():
                         n_classes = predicted.shape[1]
                         y_pred = np.empty((0, n_classes))
                     y_pred = np.concatenate((y_pred, predicted), axis=0)
-            
-            y_pred = np.exp(y_pred)
-            y_pred = (y_pred.T / y_pred.T.sum(0)).T
-            save_adata(adata_q, attr='obs', key='_'.join(['pred', tag]), data = np.argmax(y_pred, axis=1))
-            temp = (-y_pred * np.log2(y_pred)).sum(axis = 1)
-            # adata_q.obs['_'.join(['ent', tag])] = np.array(temp) / np.log2(n_classes)
-            save_adata(adata_q, attr='obs', key='_'.join(['ent', tag]), data = (np.array(temp) / np.log2(n_classes)))
-            y_pred_1 = (multinomial_rvs(1, y_pred).T * np.array(adata_q.obs['_'.join(['ent', tag])])).T
-            y_pred_2 = (y_pred.T * (1-np.array(adata_q.obs['_'.join(['ent', tag])]))).T
-            y_pred_final = y_pred_1 + y_pred_2
-            kl_d = kullback_leibler_divergence(y_pred_final)
-            kl_d = kl_d + kl_d.T
-            kl_d /= np.linalg.norm(kl_d, 'fro')
-            dist_mat += kl_d
-        save_adata(adata_q, attr='obsm', key='dist_map', data=dist_mat)
+            if save_pred or save_prob or save_ent or save_dist:
+                y_pred = np.exp(y_pred)
+                y_pred = (y_pred.T / y_pred.T.sum(0)).T
+                if save_prob:
+                    save_adata(adata_q, attr='obsm', key='_'.join(['prob', tag]), data = y_pred)
+                if save_pred:
+                    save_adata(adata_q, attr='obs', key='_'.join(['pred', tag]), data = np.argmax(y_pred, axis=1))
+                if save_ent:
+                    temp = (-y_pred * np.log2(y_pred)).sum(axis = 1)
+                    # adata_q.obs['_'.join(['ent', tag])] = np.array(temp) / np.log2(n_classes)
+                    save_adata(adata_q, attr='obs', key='_'.join(['ent', tag]), data = (np.array(temp) / np.log2(n_classes)))
+                if save_dist:
+                    y_pred_1 = (multinomial_rvs(1, y_pred).T * np.array(adata_q.obs['_'.join(['ent', tag])])).T
+                    y_pred_2 = (y_pred.T * (1-np.array(adata_q.obs['_'.join(['ent', tag])]))).T
+                    y_pred_final = y_pred_1 + y_pred_2
+                    kl_d = kullback_leibler_divergence(y_pred_final)
+                    kl_d = kl_d + kl_d.T
+                    kl_d /= np.linalg.norm(kl_d, 'fro')
+                    dist_mat += kl_d
+        if save_dist:
+            save_adata(adata_q, attr='obsm', key='dist_map', data=dist_mat)
 
     def save_model(self, tag, dir='.'):
         """Saves a single trained model.
