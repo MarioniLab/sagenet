@@ -4,6 +4,9 @@ from setuptools import setup, find_packages
 
 long_description = Path('README.rst').read_text('utf-8')
 
+import os
+os.environ[ 'NUMBA_CACHE_DIR' ] = '/tmp/'
+
 try:
     from sagenet import __author__, __email__
 except ImportError:  # Deps not yet installed
