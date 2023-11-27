@@ -124,7 +124,6 @@ class sage():
             * Adds new key(s) `ent_{tag}_{partitioning_name}` to `.obs` from `adata` which contains the uncertainity in prediction for partitioning `{partitioning_name}`, trained by model `{tag}`.
             * Adds a new key `distmap` to `.obsm` from `adata` which is a sparse matrix of size `n_obs × n_obs` containing the reconstructed cell-to-cell spatial distance.
         """    
-        dist_mat = np.zeros((adata_q.shape[0], adata_q.shape[0]))
         for tag in self.models.keys():
             self.models[tag].eval()
             i = 0
@@ -158,6 +157,7 @@ class sage():
                     # adata_q.obs['_'.join(['ent', tag])] = np.array(temp) / np.log2(n_classes)
                     save_adata(adata_q, attr='obs', key='_'.join(['ent', tag]), data = (np.array(temp) / np.log2(n_classes)))
                 if save_dist:
+                    dist_mat = np.zeros((adata_q.shape[0], adata_q.shape[0]))
                     y_pred_1 = (multinomial_rvs(1, y_pred).T * np.array(adata_q.obs['_'.join(['ent', tag])])).T
                     y_pred_2 = (y_pred.T * (1-np.array(adata_q.obs['_'.join(['ent', tag])]))).T
                     y_pred_final = y_pred_1 + y_pred_2
@@ -165,9 +165,8 @@ class sage():
                     kl_d = kl_d + kl_d.T
                     kl_d /= np.linalg.norm(kl_d, 'fro')
                     dist_mat += kl_d
-        if save_dist:
-            save_adata(adata_q, attr='obsm', key='dist_map', data=dist_mat)
-
+                    save_adata(adata_q, attr='obsm', key='dist_map', data=dist_mat)
+                    
     def save_model(self, tag, dir='.'):
         """Saves a single trained model.
 
