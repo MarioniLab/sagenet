@@ -8,7 +8,6 @@ from gglasso.helper.basic_linalg import adjacency_matrix
 import torch
 import torch_geometric.data as geo_dt 
 from sklearn.utils.extmath import fast_logdet
-import numpy as np
 from scipy import sparse
 import warnings
 from torch.nn import Softmax
@@ -16,6 +15,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.covariance import empirical_covariance
 from sklearn.metrics import *
 from scipy import sparse
+from functools import reduce
+import warnings
+from torch.nn import Softmax
 
 
 
@@ -275,14 +277,16 @@ def map2ref(adata_ref, adata_q, k=10, key='spatial_pred', inplace=True):
     kdtree_r1 = cKDTree(ref_embeddings)
     target_embeddings = adata_q.obsm['prob_concatenated']
     distances, indices = kdtree_r1.query(target_embeddings, k=k)
-    m             = Softmax(dim=1)
-    probs         = m(-torch.tensor(distances))
-    dist          = torch.distributions.categorical.Categorical(probs=probs)
-    idx           = dist.sample().numpy()
-    indices       = indices[np.arange(len(indices)), idx]
-    adata_q.obsm['spatial'] = adata_ref.obsm['spatial'][indices] 
-    if inplace:
-        save_adata(adata_q, attr='obsm', key='spatial', data= adata_ref.obsm['spatial'][indices])
-    else:
-        return adata_q
+    m       = Softmax(dim=1)
+    probs   = m(-torch.tensor(distances))
+    dist    = torch.distributions.categorical.Categorical(probs=probs)
+    idx     = dist.sample().numpy()
+    indices = indices[np.arange(len(indices)), idx]
+    conf    = distances.max() / distances.mean(1)
+    return indices, conf
+    # adata_q.obsm['spatial'] = adata_ref.obsm['spatial'][indices] 
+    # if inplace:
+    #     save_adata(adata_q, attr='obsm', key='spatial', data= adata_ref.obsm['spatial'][indices])
+    # else:
+    #     return adata_q
     # swap.obs['sink']
