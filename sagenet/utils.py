@@ -18,8 +18,7 @@ from scipy import sparse
 from functools import reduce
 import warnings
 from torch.nn import Softmax
-
-
+from scipy.spatial import cKDTree
 
 def glasso(adata, lambda_low=-10, lambda_high=-1, mode='cd'):
     """
@@ -282,7 +281,7 @@ def map2ref(adata_ref, adata_q, k=10):
     dist    = torch.distributions.categorical.Categorical(probs=probs)
     idx     = dist.sample().numpy()
     indices = indices[np.arange(len(indices)), idx]
-    conf    = distances.max() / distances.mean(1)
+    conf    = distances.min(1) / distances.min()
     return indices, conf
     # adata_q.obsm['spatial'] = adata_ref.obsm['spatial'][indices] 
     # if inplace:

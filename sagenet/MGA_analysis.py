@@ -4,6 +4,7 @@ import numpy as np
 import squidpy as sq
 import scanpy as sc
 import torch
+import anndata as ad
 
 random.seed(1996)
 
@@ -41,15 +42,57 @@ sg_obj.add_ref(adata_r1, comm_columns=['leiden_0.01', 'leiden_0.05', 'leiden_0.1
 
 
 sg_obj.map_query(adata_r1, save_prob=True)
-ind, conf = map2ref(adata_r1, adata_r1, key='spatial')
+ind, conf = map2ref(adata_r1, adata_r1)
 adata_r1.obsm['spatial_pred'] = adata_r1.obsm['spatial'][ind,:]
-map2ref(adata_r1, adata_r2, key='spatial')
-map2ref(adata_r1, adata_r3, key='spatial')
-map2ref(adata_r1, adata_r1, key='spatial')
-sg_obj.map_query(adata_r1, save_prob=True)
-sg_obj.map_query(adata_r1, save_prob=True)
-sg_obj.map_query(adata_r1, save_prob=True)
-sg_obj.map_query(adata_r1, save_prob=True)
-sg_obj.map_query(adata_r1, save_prob=True)
-sg_obj.map_query(adata_r1, save_prob=True)
+adata_r1.obs['conf'] = np.log(conf)
+sg_obj.map_query(adata_r2, save_prob=True)
+ind, conf = map2ref(adata_r1, adata_r2)
+adata_r2.obsm['spatial'] = adata_r1.obsm['spatial'][ind,:]
+adata_r2.obs['conf'] = np.log(conf)
+sg_obj.map_query(adata_r3, save_prob=True)
+ind, conf = map2ref(adata_r1, adata_r3)
+adata_r3.obsm['spatial'] = adata_r1.obsm['spatial'][ind,:]
+adata_r3.obs['conf'] = np.log(conf)
+sg_obj.map_query(adata_q1, save_prob=True)
+ind, conf = map2ref(adata_r1, adata_q1)
+adata_q1.obsm['spatial'] = adata_r1.obsm['spatial'][ind,:]
+adata_q1.obs['conf'] = np.log(conf)
+sg_obj.map_query(adata_q2, save_prob=True)
+ind, conf = map2ref(adata_r1, adata_q2)
+adata_q2.obsm['spatial'] = adata_r1.obsm['spatial'][ind,:]
+adata_q2.obs['conf'] = np.log(conf)
+sg_obj.map_query(adata_q3, save_prob=True)
+ind, conf = map2ref(adata_r1, adata_q3)
+adata_q3.obsm['spatial'] = adata_r1.obsm['spatial'][ind,:]
+adata_q3.obs['conf'] = np.log(conf)
+sg_obj.map_query(adata_q, save_prob=True)
+ind, conf = map2ref(adata_r1, adata_q)
+adata_q.obsm['spatial'] = adata_r1.obsm['spatial'][ind,:]
+adata_q.obs['conf'] = np.log(conf)
 
+adata_r1.obsm['spatial'] = adata_r1.obsm['spatial_pred']
+
+
+ad_concat = ad.concat([adata_r1, adata_r2, adata_r3, adata_q1, adata_q2, adata_q3, adata_q], label='batch')
+
+sc.pl.spatial(
+    ad_concat,
+    color='cell_type',
+    palette=celltype_colours,# Color cells based on 'cell_type'
+    # color_map=cell_type_color_map,  # Use the custom color map
+    # library_id='r1_mapping',  # Use 'r1_mapping' coordinates
+    title='all to r1 map',
+    save='_ad_r1_all.pdf',
+    spot_size=.1
+)
+
+sc.pl.spatial(
+    ad_concat,
+    color='conf',
+    # palette=celltype_colours,# Color cells based on 'cell_type'
+    # color_map=cell_type_color_map,  # Use the custom color map
+    # library_id='r1_mapping',  # Use 'r1_mapping' coordinates
+    title='all to r1 map',
+    save='_ad_r1_all_conf.pdf',
+    spot_size=.1
+)
