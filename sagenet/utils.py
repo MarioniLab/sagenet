@@ -256,17 +256,17 @@ def prob_con(adata, overwrite=False, inplace=True):
         concatenated_matrix = reduce(concatenate_matrices, [adata.obsm[matrix] for matrix in prob_matrices])
         adata.obsm["prob_concatenated"] = concatenated_matrix
         if inplace:
-            save_adata(adata_q, attr='obsm', key='spatial', data=concatenated_matrix)
+            save_adata(adata, attr='obsm', key='spatial', data=concatenated_matrix)
             return None
     else:
         warnings.warn("No 'prob' matrices found in the AnnData object.")
     if not inplace:
-        return adata_q
+        return adata
 
 
-def map2ref(adata_ref, adata_q, k=10, key='spatial_pred', inplace=True):
-    if "spatial" not in adata_ref.obsm.keys():
-        raise Exception("adata_ref.obsm['spatial'] does not exist. Necessary for spatial mapping.")
+def map2ref(adata_ref, adata_q, k=10):
+    # if "spatial" not in adata_ref.obsm.keys():
+    #     raise Exception("adata_ref.obsm['spatial'] does not exist. Necessary for spatial mapping.")
     if "prob_concatenated" not in adata_ref.obsm.keys():
         warnings.warn("obsm['prob_concatenated'] does not exsit for adata_ref. Calculating obsm['prob_concatenated'].")
         prob_con(adata_ref)
